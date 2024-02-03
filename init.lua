@@ -42,3 +42,10 @@ require("keymaps")
 require("autocommands")
 
 -------------------------------------------------------------------------------
+-- couple of more notes the lua folder is searched in by lua by default.
+-- the plugins on the other hand is also added to runtimepath of lua and that's
+-- why it is not needed to be required  here.
+-- for more info :h runtimepath.
+--
+--
+-- TODO add mapping for symoloutlinetoggle

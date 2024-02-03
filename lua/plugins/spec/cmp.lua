@@ -10,20 +10,48 @@ local lazy_cmp_config = function()
     },
     mapping = {
       ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+      -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
       ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+      --["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-y>"] = cmp.mapping(
         cmp.mapping.confirm({ select = true }),
         { "i", "c" }
       ),
+      ["<CR>"] = cmp.mapping(
+        cmp.mapping.confirm({ select = false }),
+        { "i", "c" }
+      ),
+
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- that way you will only jump inside the snippet region
+        elseif luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        elseif has_words_before() then
+          cmp.complete()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      --["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
@@ -57,7 +85,7 @@ local lazy_cmp_config = function()
     },
   })
 
-  -- `/` cmdline setup.
+  -- Use buffer source for `/` and `?`
   cmp.setup.cmdline({ "/", "?" }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
@@ -65,7 +93,7 @@ local lazy_cmp_config = function()
     },
   })
 
-  -- `:` cmdline setup.
+  -- Use cmdline & path source for ':'
   cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
@@ -98,9 +126,6 @@ local M = {
         "hrsh7th/cmp-cmdline",
       },
       {
-        "hrsh7th/cmp-emoji",
-      },
-      {
         "saadparwaiz1/cmp_luasnip",
       },
       {
@@ -113,4 +138,6 @@ local M = {
   },
 }
 
+-- check :h ins-completion for more vim/nvim builtin completions
+-- what abort
 return M

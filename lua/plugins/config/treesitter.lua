@@ -75,32 +75,23 @@ local setup_treesitter = function()
       "cmake",
       "comment",
       "cpp",
-      "go",
-      "hjson",
-      "json",
       "lua",
       "markdown",
-      "norg",
-      "rst",
-      "toml",
-      "typescript",
       "vim",
-      "yaml",
-      "zig",
     },
     auto_install = false,
     -- FIXME: - highlight is too slow in general
     --        - to test open `~/.config/nvim/lua/options.lua` and scroll
     --          down using `j` key, which `htop` running.
-    highlight = {
-      enable = true,
-      -- disable = function(
-      --   _, --[[lang]]
-      --   bufnr
-      -- )
-      --   return vim.api.nvim_buf_line_count(bufnr) > 2500
-      -- end,
-    },
+    --highlight = {
+    --  enable = true,
+    --  -- disable = function(
+    --  --   _, --[[lang]]
+    --  --   bufnr
+    --  -- )
+    --  --   return vim.api.nvim_buf_line_count(bufnr) > 2500
+    --  -- end,
+    --},
     incremental_selection = {
       enable = true,
       keymaps = {

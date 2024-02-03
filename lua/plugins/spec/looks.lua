@@ -33,16 +33,16 @@ local M = {
       })
     end,
   },
-  {
-    -- https://github.com/lukas-reineke/virt-column.nvim
-    "lukas-reineke/virt-column.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("virt-column").setup()
-      -- TODO: Set this up to a specific column for interesting file types
-      --       Also, look up my old vim config's `colorcolumn` for inspiration
-    end,
-  },
+  --{ maybe enable in the future for now dont have any need for it.
+  --  -- https://github.com/lukas-reineke/virt-column.nvim
+  --  "lukas-reineke/virt-column.nvim",
+  --  event = "VeryLazy",
+  --  config = function()
+  --    require("virt-column").setup()
+  --    -- TODO: Set this up to a specific column for interesting file types
+  --    --       Also, look up my old vim config's `colorcolumn` for inspiration
+  --  end,
+  --},
   {
     -- https://github.com/folke/todo-comments.nvim
     "folke/todo-comments.nvim",

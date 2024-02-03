@@ -12,8 +12,58 @@ M.setup = function()
 
   local file_browser = telescope.extensions.file_browser
 
+  local line_no
+  local function post()
+    if line_no then
+      vim.cmd.normal(line_no .. 'G')
+      line_no = nil
+    end
+  end
+
+  local sorters = require('telescope.sorters')
+  local function sorter(opts)
+    opts = opts or {}
+    local fzy = opts.fzy_mod or require('telescope.algos.fzy')
+    local OFFSET = -fzy.get_score_floor()
+    return sorters.Sorter:new({
+      discard = true,
+      scoring_function = function(_, prompt, line)
+        local i = prompt:find(':', 1, true)
+        if i then
+          line_no = tonumber(prompt:sub(i + 1))
+          prompt = prompt:sub(1, i - 1)
+        else
+          line_no = nil
+        end
+        if not fzy.has_match(prompt, line) then
+          return -1
+        end
+        local fzy_score = fzy.score(prompt, line)
+        if fzy_score == fzy.get_score_min() then
+          return 1
+        end
+        return 1 / (fzy_score + OFFSET)
+      end,
+      highlighter = function(_, prompt, display)
+        local i = prompt:find(':', 1, true)
+        if i then
+          prompt = prompt:sub(1, i - 1)
+        end
+        return fzy.positions(prompt, display)
+      end
+    })
+  end
+
+  local actions = require('telescope.actions')
+  actions.select_default._static_post.select_default = post
+  actions.select_horizontal._static_post.select_horizontal = post
+  actions.select_vertical._static_post.select_vertical = post
+  actions.select_tab._static_post.select_tab = post
+
   telescope.setup({
     defaults = {
+      prompt_prefix = '',
+      file_sorter = sorter,
       file_ignore_patterns = {
         "^.git/",
       },
@@ -154,6 +204,9 @@ M.setup = function()
     })
   end
 
+  -- this searches in the curr open buffer dir
+  -- lets say you have Dir = [a , b ,c] and you are in a
+  -- this will show you a,b,c
   local browse_files_in_buffer_dir = function()
     local cwd, is_git = get_project_root()
     file_browser.file_browser({
@@ -392,7 +445,8 @@ M.setup = function()
         end,
         "fa[v]: [j]ournal folder",
       },
-      b = {
+      -- I dont need this
+      --[[ b = {
         function()
           file_browser.file_browser({
             prompt_title = "Explore bash config",
@@ -401,8 +455,8 @@ M.setup = function()
           })
         end,
         "fa[v]: [b]ash config",
-      },
-      t = {
+      }, ]]
+      --[[ t = {
         function()
           file_browser.file_browser({
             prompt_title = "Explore tmux config",
@@ -411,7 +465,7 @@ M.setup = function()
           })
         end,
         "fa[v]: [t]mux config",
-      },
+      }, ]]
     },
   }, { prefix = "<leader>" })
 

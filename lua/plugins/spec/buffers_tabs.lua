@@ -1,52 +1,52 @@
 -- config extracted here to reduce indentation
-local telescope_tabs_lazy_config = function()
-  local telescope_tabs = require("telescope-tabs")
-  -- copied from https://github.com/LukasPietzschmann/telescope-tabs/wiki/Configs#configs
-  telescope_tabs.setup({
-    entry_formatter = function(
-      tab_id,
-      _, --[[ buffer_ids ]]
-      _, --[[ file_names ]]
-      _, --[[ file_paths ]]
-      is_current
-    )
-      local tab_name = require("tabby.feature.tab_name").get(tab_id)
-      return string.format(
-        "%d: %s%s",
-        tab_id,
-        tab_name,
-        is_current and " <" or ""
-      )
-    end,
-    entry_ordinal = function(
-      tab_id,
-      _, --[[ buffer_ids ]]
-      _, --[[ file_names ]]
-      _, --[[ file_paths ]]
-      _ --[[ is_current ]]
-    )
-      return require("tabby.feature.tab_name").get(tab_id)
-    end,
-  })
-
-  require("which-key").register({
-    ["<leader><leader>t"] = {
-      function()
-        telescope_tabs.list_tabs()
-      end,
-      "tab: [t]ab list",
-    },
-    ["\\t"] = {
-      function()
-        telescope_tabs.go_to_previous()
-      end,
-      "tab: [t]oggle",
-    },
-  }, {})
-end
+-- local telescope_tabs_lazy_config = function()
+--   local telescope_tabs = require("telescope-tabs")
+--   -- copied from https://github.com/LukasPietzschmann/telescope-tabs/wiki/Configs#configs
+--   telescope_tabs.setup({
+--     entry_formatter = function(
+--       tab_id,
+--       _, --[[ buffer_ids ]]
+--       _, --[[ file_names ]]
+--       _, --[[ file_paths ]]
+--       is_current
+--     )
+--       local tab_name = require("tabby.feature.tab_name").get(tab_id)
+--       return string.format(
+--         "%d: %s%s",
+--         tab_id,
+--         tab_name,
+--         is_current and " <" or ""
+--       )
+--     end,
+--     entry_ordinal = function(
+--       tab_id,
+--       _, --[[ buffer_ids ]]
+--       _, --[[ file_names ]]
+--       _, --[[ file_paths ]]
+--       _ --[[ is_current ]]
+--     )
+--       return require("tabby.feature.tab_name").get(tab_id)
+--     end,
+--   })
+--
+--   require("which-key").register({
+--     ["<leader><leader>t"] = {
+--       function()
+--         telescope_tabs.list_tabs()
+--       end,
+--       "tab: [t]ab list",
+--     },
+--     ["\\t"] = {
+--       function()
+--         telescope_tabs.go_to_previous()
+--       end,
+--       "tab: [t]oggle",
+--     },
+--   }, {})
+-- end
 
 local M = {
-  {
+  --[[ {
     "nanozuki/tabby.nvim",
     event = "VeryLazy",
     config = function()
@@ -76,7 +76,7 @@ local M = {
       },
     },
     config = telescope_tabs_lazy_config,
-  },
+  }, ]]
 }
 
 return M

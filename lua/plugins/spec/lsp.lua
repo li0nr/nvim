@@ -18,10 +18,6 @@ local M = {
         "folke/lua-dev.nvim",
       },
       {
-        -- https://github.com/b0o/SchemaStore.nvim
-        "b0o/schemastore.nvim",
-      },
-      {
         -- spec elsewhere
         "folke/which-key.nvim",
       },
@@ -34,10 +30,6 @@ local M = {
         "hrsh7th/cmp-nvim-lsp",
       },
       {
-        -- spec elsewhere
-        "ray-x/lsp_signature.nvim",
-      },
-      {
         -- spec below
         "aznhe21/actions-preview.nvim",
       },
@@ -45,7 +37,15 @@ local M = {
         -- spec below
         "p00f/clangd_extensions.nvim",
       },
+      {
+        -- spec elsewhere
+        "ray-x/lsp_signature.nvim",
+      },
     },
+    --[[ {
+        -- https://github.com/b0o/SchemaStore.nvim
+        "b0o/schemastore.nvim",
+      }, ]]
     --[[
     For the core lsp config, its done outside the lazy spec folder as the
     configuration is intenally modular and I would like to fuzzy find my way into

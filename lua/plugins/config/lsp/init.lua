@@ -22,22 +22,26 @@ local setup_diagnostic_config = function()
 
   vim.diagnostic.config({
     underline = true,
-    virtual_text = {
+    --[[ virtual_text = {
       severity = vim.diagnostic.severity.ERROR,
       source = true,
       spacing = 5,
-    },
+    }, ]]
+    virtual_text = false,
     signs = {
       active = signs,
     },
     severity_sort = true,
+    float = {
+      source = "always", -- Or "if_many"
+    },
   })
 
   local which_key = require("which-key")
   which_key.register({
     ["]d"] = { vim.diagnostic.goto_next, "Next [d]iagnostic" },
     ["[d"] = { vim.diagnostic.goto_prev, "Prev [d]iagnostic" },
-    ["<leader>d"] = {
+    ["<leader>ld"] = {
       vim.diagnostic.open_float,
       "[d]iagnostics under cursor",
     },
@@ -68,12 +72,12 @@ local setup_other_lsps = function(lspconfig)
   for _, server in ipairs({
     "bashls",
     "cmake",
-    "dockerls",
-    "dotls",
     "pyright",
+    --[[ "dotls",
+    "dockerls",
     "tsserver",
     "vimls",
-    "yamlls",
+    "yamlls", ]]
   }) do
     lspconfig[server].setup({
       on_attach = function(client, bufnr)
@@ -85,7 +89,7 @@ local setup_other_lsps = function(lspconfig)
     })
   end
 
-  lspconfig["jsonls"].setup({
+  --[[ lspconfig["jsonls"].setup({
     settings = {
       json = {
         schemas = require("schemastore").json.schemas(),
@@ -98,7 +102,7 @@ local setup_other_lsps = function(lspconfig)
       vanilla.setup_autocmds(client, bufnr)
     end,
     capabilities = vanilla.capabilities,
-  })
+  }) ]]
 end
 
 M.setup = function(mason, mason_lspconfig, lspconfig, neodev)

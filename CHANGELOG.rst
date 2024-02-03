@@ -2,6 +2,22 @@
 Updates
 *******
 
+2024-02-2
+==========
+thanks Prateek, this setup is cool.
+My first entry while modifying a lot of stuff around, to match my taste.
+
+- fixing some keybindings.
+
+- fixing neo-tree.
+
+- adding tmux navigations.
+
+- small tweaks here and there.
+
+- added line number navigation for telescope.
+
+
 2023-12-29
 ==========
 

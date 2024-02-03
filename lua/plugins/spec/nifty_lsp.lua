@@ -5,7 +5,8 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
-  {
+  --[[ {
+  --dont need this for now, maybe add later
     -- https://github.com/ray-x/lsp_signature.nvim
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
@@ -21,7 +22,7 @@ local M = {
       toggle_key = "<M-l>",
       select_signature_key = "<M-e>",
     },
-  },
+  }, ]]
   {
     -- https://github.com/simrat39/symbols-outline.nvim
     "simrat39/symbols-outline.nvim",

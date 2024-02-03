@@ -18,25 +18,20 @@ M.setup_native_buffer_mappings = function(
 
   local which_key = require("which-key")
   which_key.register({
-    ["lh"] = { vim.lsp.buf.hover, lsp_prefix("[h]over documentation") },
-    ["lk"] = { vim.lsp.buf.signature_help, lsp_prefix("[k] signature help") },
-    ["ld"] = { vim.lsp.buf.definition, lsp_prefix("goto [d]efinition") },
-    ["lD"] = { vim.lsp.buf.declaration, lsp_prefix("goto [D]eclaration") },
+    ["gd"]         = { vim.lsp.buf.definition, lsp_prefix("goto [d]efinition") },
+    ["gD"]         = { vim.lsp.buf.declaration, lsp_prefix("goto [D]eclaration") },
+    ["lr"]         = { vim.lsp.buf.rename, lsp_prefix("[r]ename identifier under cursor") },
+    ["<leader>lh"] = { vim.lsp.buf.hover, lsp_prefix("[h]over documentation") },
+    ["<leader>li"] = { vim.lsp.buf.implementation, lsp_prefix("goto [i]mplementation"), },
+    -- `Format` user command is setup during `conform` setup.
+    ["<leader>lf"] = { "<Cmd>Format<Cr>", lsp_prefix("[f]ormat buffer") },
+    -- a lot of not needed noise
+    --[[ ["lk"] = { vim.lsp.buf.signature_help, lsp_prefix("[k] signature help") },
     ["lt"] = {
       vim.lsp.buf.type_definition,
       lsp_prefix("goto [t]ype definition"),
-    },
-    ["li"] = {
-      vim.lsp.buf.implementation,
-      lsp_prefix("goto [i]mplementation"),
-    },
-    ["lr"] = {
-      vim.lsp.buf.rename,
-      lsp_prefix("[r]ename identifier under cursor"),
-    },
-    -- `Format` user command is setup during `conform` setup.
-    ["f"] = { "<Cmd>Format<Cr>", lsp_prefix("[f]ormat buffer") },
-  }, { prefix = "<leader>", buffer = bufnr })
+    },]]
+  }, { buffer = bufnr }) --prefix = "<leader>",
 end
 
 M.setup_plugin_buffer_mappings = function(
@@ -49,13 +44,13 @@ M.setup_plugin_buffer_mappings = function(
   -- https://github.com/nvim-telescope/telescope.nvim
   local telescope_builtin = require("telescope.builtin")
   which_key.register({
-    ["lf"] = {
+    ["lr"] = {
       function()
         telescope_builtin.lsp_references(require("telescope.themes").get_ivy({
           winblend = 20,
         }))
       end,
-      "[l]sp: re[f]erences in telescope",
+      "[l]sp: [r]eferences in telescope",
     },
     ["sd"] = {
       function()

@@ -36,8 +36,8 @@ local gitsigns_on_attach = function(bufnr)
   }, { buffer = bufnr, expr = true })
 
   which_key.register({
-    h = {
-      name = "+Git [h]unk",
+    g = {
+      name = "+[g]it hunk",
       -- Actions
       s = { gs.stage_hunk, "git: [s]tage hunk" },
       r = { gs.reset_hunk, "git: [r]reset hunk" },
@@ -69,8 +69,8 @@ local gitsigns_on_attach = function(bufnr)
   })
 
   which_key.register({
-    h = {
-      name = "+Git [h]unk",
+    g = {
+      name = "+[g]it hunk",
       -- Actions
       s = {
         function()
