@@ -9,8 +9,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Move lines
 -- replaced C [CTRL] with shift to allow tmux navigaiton to work
-vim.keymap.set("i", "<S-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
-vim.keymap.set("i", "<S-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
+vim.keymap.set("i", "<C-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
+vim.keymap.set("i", "<C-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
 vim.keymap.set("n", "<S-j>", "<cmd>m .+1<Cr>==", { desc = "Move down" })
 vim.keymap.set("n", "<S-k>", "<cmd>m .-2<Cr>==", { desc = "Move up" })
 vim.keymap.set("v", "<S-j>", ":m '>+1<Cr>gv=gv", { desc = "Move down" })

@@ -64,6 +64,8 @@ local M = {
     event = "VeryLazy",
     dependencies = { "folke/which-key.nvim" },
     config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 500
       local legendary = require("legendary")
       legendary.setup({
         sort = {

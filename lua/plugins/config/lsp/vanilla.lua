@@ -18,20 +18,33 @@ M.setup_native_buffer_mappings = function(
 
   local which_key = require("which-key")
   which_key.register({
-    ["gd"]         = { vim.lsp.buf.definition, lsp_prefix("goto [d]efinition") },
-    ["gD"]         = { vim.lsp.buf.declaration, lsp_prefix("goto [D]eclaration") },
-    ["lr"]         = { vim.lsp.buf.rename, lsp_prefix("[r]ename identifier under cursor") },
-    ["<leader>lh"] = { vim.lsp.buf.hover, lsp_prefix("[h]over documentation") },
-    ["<leader>li"] = { vim.lsp.buf.implementation, lsp_prefix("goto [i]mplementation"), },
+    ["gd"]         = { vim.lsp.buf.definition    , lsp_prefix("goto [d]efinition") },
+    ["gD"]         = { vim.lsp.buf.declaration   , lsp_prefix("goto [D]eclaration") },
+    ["gi"]         = { vim.lsp.buf.implementation, lsp_prefix("goto [i]mplementation") },
+    ["gh"]          = { vim.lsp.buf.hover         , lsp_prefix("hover documentation")},
+    ["<F2>"]       = { vim.lsp.buf.rename        , lsp_prefix("rename identifier under cursor") },
+    ["<leader>ca"] = {
+      require("actions-preview").code_actions,
+      "lsp: [c]ode [a]ctions",
+    },
+    ["<leader>lk"] = {
+      function()
+        require("lsp_signature").toggle_float_win()
+      end,
+      "lsp: Signature help",
+    },
     -- `Format` user command is setup during `conform` setup.
-    ["<leader>lf"] = { "<Cmd>Format<Cr>", lsp_prefix("[f]ormat buffer") },
+    -- ["<leader>lf"] = { "<Cmd>Format<Cr>", lsp_prefix("[f]ormat buffer") },
+    -- https://github.com/aznhe21/actions-preview.nvim
+
     -- a lot of not needed noise
     --[[ ["lk"] = { vim.lsp.buf.signature_help, lsp_prefix("[k] signature help") },
     ["lt"] = {
       vim.lsp.buf.type_definition,
       lsp_prefix("goto [t]ype definition"),
     },]]
-  }, { buffer = bufnr }) --prefix = "<leader>",
+  },
+    { mode = "n", buffer = bufnr }) --prefix = "<leader>",
 end
 
 M.setup_plugin_buffer_mappings = function(
@@ -50,9 +63,9 @@ M.setup_plugin_buffer_mappings = function(
           winblend = 20,
         }))
       end,
-      "[l]sp: [r]eferences in telescope",
+      "lsp: [g]oto [r]eferences in telescope",
     },
-    ["sd"] = {
+    ["ls"] = {
       function()
         telescope_builtin.lsp_document_symbols(
           require("telescope.themes").get_ivy({
@@ -60,7 +73,7 @@ M.setup_plugin_buffer_mappings = function(
           })
         )
       end,
-      "lsp: search [s]ymbols in [d]ocument",
+      "lsp: [g]oto [s]ymbols",
     },
   }, { prefix = "<leader>", buffer = bufnr })
 
@@ -68,25 +81,25 @@ M.setup_plugin_buffer_mappings = function(
 
   --============================================================================
   -- https://github.com/aznhe21/actions-preview.nvim
-  which_key.register({
+  --[[ which_key.register({
     ["la"] = {
       require("actions-preview").code_actions,
       "[l]sp: code [a]ctions",
     },
-  }, { prefix = "<leader>", buffer = bufnr })
+  }, { prefix = "<leader>", buffer = bufnr }) ]]
 
   -----------------------------------------------------------------------------
 
   --============================================================================
   -- https://github.com/ray-x/lsp_signature.nvim
-  require("which-key").register({
+  --[[ require("which-key").register({
     ["<C-h>"] = {
       function()
         require("lsp_signature").toggle_float_win()
       end,
       "lsp: Signature help",
     },
-  }, { buffer = bufnr })
+  }, { buffer = bufnr }) ]]
 
   -----------------------------------------------------------------------------
 

@@ -1,4 +1,5 @@
 -- https://github.com/stevearc/conform.nvim
+-- used in linting.lua
 M = {}
 
 M.setup_conform = function()

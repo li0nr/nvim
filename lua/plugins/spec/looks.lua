@@ -43,20 +43,20 @@ local M = {
   --    --       Also, look up my old vim config's `colorcolumn` for inspiration
   --  end,
   --},
-  {
-    -- https://github.com/folke/todo-comments.nvim
-    "folke/todo-comments.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = true,
-  },
-  {
-    -- https://github.com/lukas-reineke/headlines.nvim
-    "lukas-reineke/headlines.nvim",
-    event = "VeryLazy",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = true,
-  },
+  -- {
+  --   -- https://github.com/folke/todo-comments.nvim
+  --   "folke/todo-comments.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "nvim-lua/plenary.nvim" },
+  --   config = true,
+  -- },
+  -- {
+  --   -- https://github.com/lukas-reineke/headlines.nvim
+  --   "lukas-reineke/headlines.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  --   config = true,
+  -- },
   {
     -- https://github.com/RRethy/vim-illuminate
     "RRethy/vim-illuminate",

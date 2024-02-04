@@ -11,10 +11,6 @@ local M = {
     end,
   },
   {
-    -- https://github.com/tpope/vim-repeat
-    "tpope/vim-repeat",
-  },
-  {
     -- https://github.com/ggandor/leap.nvim
     "ggandor/leap.nvim",
     event = "VeryLazy",
@@ -25,6 +21,10 @@ local M = {
       leap.opts.case_sensitive = true
     end,
   },
+  --[[ {
+    -- https://github.com/tpope/vim-repeat
+    "tpope/vim-repeat",
+  }, ]]
 }
 
 return M

@@ -48,4 +48,7 @@ require("autocommands")
 -- for more info :h runtimepath.
 --
 --
--- TODO add mapping for symoloutlinetoggle
+--https://github.com/hedyhli/outline.nvim 
+--https://github.com/ubaldot/vim-outline
+--https://github.com/tani/vim-glance 
+--https://github.com/rebelot/kanagawa.nvim?tab=readme-ov-file 

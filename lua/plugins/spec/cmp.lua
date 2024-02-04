@@ -19,16 +19,16 @@ local lazy_cmp_config = function()
         cmp.mapping.confirm({ select = true }),
         { "i", "c" }
       ),
-      ["<CR>"] = cmp.mapping(
-        cmp.mapping.confirm({ select = false }),
-        { "i", "c" }
-      ),
+      -- ["<CR>"] = cmp.mapping(
+      --   cmp.mapping.confirm({ select = false }),
+      --   { "i", "c" }
+      -- ),
 
       ["<C-e>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      ["<C-cn>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -42,7 +42,7 @@ local lazy_cmp_config = function()
         end
       end, { "i", "s" }),
 
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["<C-cp>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then

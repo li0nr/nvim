@@ -103,6 +103,12 @@ local M = {
       -- vim.cmd.colorscheme("nightfox")
     end,
   },
+  {
+    "briones-gabriel/darcula-solid.nvim",
+    event = "VeryLazy",
+      -- priority = 1000,
+    dependencies = { "rktjmp/lush.nvim" },
+  }
   -- {
   --   -- https://github.com/folke/styler.nvim
   --   "folke/styler.nvim",

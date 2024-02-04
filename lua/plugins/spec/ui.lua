@@ -9,18 +9,18 @@ local M = {
       })
     end,
   },
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("dressing").setup({
-        input = {
-          enabled = true,
-          default_prompt = "Input> ",
-        },
-      })
-    end,
-  },
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("dressing").setup({
+  --       input = {
+  --         enabled = true,
+  --         default_prompt = "Input> ",
+  --       },
+  --     })
+  --   end,
+  -- },
 }
 
 return M

@@ -5,6 +5,12 @@ local M = {
     event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
+  {
+    -- https://github.com/simrat39/symbols-outline.nvim
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+    config = true,
+  },
   --[[ {
   --dont need this for now, maybe add later
     -- https://github.com/ray-x/lsp_signature.nvim
@@ -23,12 +29,6 @@ local M = {
       select_signature_key = "<M-e>",
     },
   }, ]]
-  {
-    -- https://github.com/simrat39/symbols-outline.nvim
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    config = true,
-  },
   --[[
   -- Required Neovim version 0.10
   {
