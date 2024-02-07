@@ -95,10 +95,10 @@ local setup_treesitter = function()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "<Enter>",
-        node_incremental = "<Enter>",
-        scope_incremental = "<C-Enter>",
-        node_decremental = "<BS>",
+        init_selection    = "<leader>ss",
+        node_incremental  = "<leader>si",
+        scope_incremental = "<leader>sc",
+        node_decremental  = "<leader>sd",
       },
     },
     indent = { enable = true },

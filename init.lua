@@ -41,6 +41,7 @@ require("options")
 require("keymaps")
 require("autocommands")
 
+vim.cmd("colorscheme darcula-solid")
 -------------------------------------------------------------------------------
 -- couple of more notes the lua folder is searched in by lua by default.
 -- the plugins on the other hand is also added to runtimepath of lua and that's
@@ -50,5 +51,5 @@ require("autocommands")
 --
 --https://github.com/hedyhli/outline.nvim 
 --https://github.com/ubaldot/vim-outline
---https://github.com/tani/vim-glance 
 --https://github.com/rebelot/kanagawa.nvim?tab=readme-ov-file 
+

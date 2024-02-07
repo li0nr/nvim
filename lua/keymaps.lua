@@ -57,8 +57,8 @@ vim.keymap.set(
 )
 
 -- Cycle through windows in a tab
-vim.keymap.set("n", "<Tab>", "<C-W>w", NOREMAP("Next window in tab"))
-vim.keymap.set("n", "<S-Tab>", "<C-W>W", NOREMAP("Previous window in tab"))
+-- vim.keymap.set("n", "<Tab>", "<C-W>w", NOREMAP("Next window in tab"))
+-- vim.keymap.set("n", "<S-Tab>", "<C-W>W", NOREMAP("Previous window in tab"))
 
 -- When scrolling using CTRL F/D/U, put the screen in center
 vim.keymap.set("n", "<C-f>", "<C-f>zz")

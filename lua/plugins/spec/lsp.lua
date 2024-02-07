@@ -42,6 +42,10 @@ local M = {
         "ray-x/lsp_signature.nvim",
       },
     },
+    opts = {
+      -- Automatically format on save
+      autoformat = false,
+    },
     --[[ {
         -- https://github.com/b0o/SchemaStore.nvim
         "b0o/schemastore.nvim",

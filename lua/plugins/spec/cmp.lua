@@ -28,7 +28,7 @@ local lazy_cmp_config = function()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      ["<C-cn>"] = cmp.mapping(function(fallback)
+      ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -42,7 +42,7 @@ local lazy_cmp_config = function()
         end
       end, { "i", "s" }),
 
-      ["<C-cp>"] = cmp.mapping(function(fallback)
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
@@ -62,7 +62,7 @@ local lazy_cmp_config = function()
       { name = "path" },
       { name = "buffer", keyword_length = 4 },
     }),
-    formatting = {
+    --[[ formatting = {
       fields = { "abbr", "kind", "menu" },
       format = lspkind.cmp_format({
         mode = "symbol", -- show only symbol annotations
@@ -76,7 +76,7 @@ local lazy_cmp_config = function()
         },
         maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       }),
-    },
+    }, ]]
     view = {
       entries = {
         name = "custom",

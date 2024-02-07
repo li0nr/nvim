@@ -108,20 +108,7 @@ local M = {
     event = "VeryLazy",
       -- priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
-  }
-  -- {
-  --   -- https://github.com/folke/styler.nvim
-  --   "folke/styler.nvim",
-  --   config = function()
-  --     require("styler").setup({
-  --       themes = {
-  --         markdown = { colorscheme = "tokyonight-moon" },
-  --         rst = { colorscheme = "tokyonight-moon" },
-  --         help = { colorscheme = "material-oceanic" },
-  --       },
-  --     })
-  --   end,
-  -- },
+  },
 }
 
 return M

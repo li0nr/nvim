@@ -65,7 +65,7 @@ vim.o.clipboard = "unnamedplus"
 -- config on the ZSA keyboards
 -------------------------------------------------------------------------------
 
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 -- When there is a previous search pattern, highlight all its matches.
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -202,8 +202,8 @@ vim.opt.undofile = true
 -------------------------------------------------------------------------------
 
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+-- vim.opt.tabstop = 2
 -- Tab settings
 -- expandtab
 --  In Insert mode: Use the appropriate number of spaces to insert a tab
