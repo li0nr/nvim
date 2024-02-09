@@ -16,39 +16,9 @@ local M = {
   {
     "folke/tokyonight.nvim",
     event = "VeryLazy",
-    -- priority = 1000,
     config = function()
-      -- vim.cmd.colorscheme "tokyonight"
-    end,
-  },
-  {
-    "marko-cerovac/material.nvim",
-    event = "VeryLazy",
-    -- priority = 1000,
-    config = function()
-      -- darker
-      -- lighter
-      -- oceanic
-      -- palenight
-      -- deep ocean
-      vim.g.material_style = "darker"
-      require("material").setup({
-        contrast = {
-          floating_windows = true,
-          cursor_line = true,
-          non_current_windows = true,
-        },
-      })
-      -- vim.cmd.colorscheme "material"
-    end,
-  },
-  {
-    "sam4llis/nvim-tundra",
-    event = "VeryLazy",
-    -- priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme "tundra"
-    end,
+
+    end
   },
   {
     "catppuccin/nvim",
@@ -79,13 +49,6 @@ local M = {
           which_key = true,
         },
       })
-
-      -- catppuccin
-      -- catppuccin-latte
-      -- catppuccin-frappe
-      -- catppuccin-macchiato
-      -- catppuccin-mocha
-      vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
   {
@@ -93,14 +56,7 @@ local M = {
     event = "VeryLazy",
     -- priority = 1000,
     config = function()
-      -- nightfox
-      -- dayfox
-      -- dawnfox
-      -- duskfox
-      -- nordfox
-      -- terafox
-      -- carbonfox
-      -- vim.cmd.colorscheme("nightfox")
+
     end,
   },
   {
@@ -109,6 +65,14 @@ local M = {
       -- priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
   },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+
+    end
+    },
+   
 }
 
 return M

@@ -24,7 +24,7 @@ vim.wildoptions = "pum"
 -- |ins-completion-menu|.
 -------------------------------------------------------------------------------
 
-vim.opt.cmdheight = 2
+vim.opt.cmdheight = 1 
 -- Number of screen lines to use for the command-line.  Helps avoiding
 -------------------------------------------------------------------------------
 
@@ -270,7 +270,7 @@ vim.opt.listchars = {
 }
 -------------------------------------------------------------------------------
 
-vim.opt.shada = {
+--[[ vim.opt.shada = {
   "!", -- When included, save and restore global variables that start
   -- with an uppercase letter, and don't contain a lowercase
   -- letter.  Thus "KEEPTHIS and "K_L_M" are stored, but "KeepThis"
@@ -288,7 +288,7 @@ vim.opt.shada = {
   -- Maximum size of an item contents in KiB.
   "h", -- Disable the effect of 'hlsearch' when loading the shada
   -- file. When not included, it depends on whether ":nohlsearch"
-}
+} ]]
 -- If you exit Vim and later start it again, you would normally lose a lot of
 -- information.  The ShaDa file can be used to remember that information, which
 -- enables you to continue where you left off.  Its name is the abbreviation of
@@ -313,3 +313,6 @@ vim.opt.inccommand = "split"
 -- |:snomagic| and user commands with the |:command-preview| flag as you
 -- type.
 -------------------------------------------------------------------------------
+
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true

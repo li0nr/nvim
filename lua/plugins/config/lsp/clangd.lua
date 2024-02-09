@@ -31,6 +31,7 @@ M.setup = function()
   local vanilla = require("plugins.config.lsp.vanilla")
 
   local opts = {
+    cmd = {'clangd', '--background-index', '--clang-tidy'},
     on_attach = function(client, bufnr)
       vanilla.setup_native_buffer_mappings(client, bufnr)
       vanilla.setup_plugin_buffer_mappings(client, bufnr)

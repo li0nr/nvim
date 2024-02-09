@@ -78,6 +78,8 @@ M.setup = function()
     },
   })
 
+if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
+
   --[[==========================================================================
   Find project root directory
   - If the current buffer is inside a git repo, then this is root of the repo

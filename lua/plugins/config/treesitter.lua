@@ -71,6 +71,7 @@ local setup_treesitter = function()
   ts_config.setup({
     ensure_installed = {
       "bash",
+      "python",
       "c",
       "cmake",
       "comment",

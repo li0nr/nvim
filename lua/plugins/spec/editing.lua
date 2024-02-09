@@ -19,15 +19,15 @@ local M = {
     config = true,
   },
   {
+    -- https://github.com/farmergreg/vim-lastplace
+    "farmergreg/vim-lastplace",
+  },
+    --[[ {
     -- https://github.com/mzlogin/vim-markdown-toc
     "mzlogin/vim-markdown-toc",
     event = "VeryLazy",
     ft = "markdown",
-  },
-  {
-    -- https://github.com/farmergreg/vim-lastplace
-    "farmergreg/vim-lastplace",
-  },
+  }, ]]
 }
 
 return M
