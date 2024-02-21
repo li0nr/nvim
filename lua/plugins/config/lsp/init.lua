@@ -126,7 +126,7 @@ M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
 
   -- local ensure_installed = { "lua_ls" }
   mason_lspconfig.setup({
-    ensure_installed = { "clangd", "lua_ls" },
+    ensure_installed = { "clangd", "lua_ls"},
     automatic_installation = true,
   })
 
@@ -142,6 +142,7 @@ M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
 
   require("plugins.config.lsp.clangd").setup()
   require("plugins.config.lsp.lua_ls").setup()
+  require("plugins.config.lsp.ruff_lsp").setup()
 
   setup_other_lsps(lspconfig)
 end

@@ -10,9 +10,7 @@ local lazy_cmp_config = function()
     },
     mapping = {
       ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-      -- ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
       ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-      --["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
       ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
       ["<C-y>"] = cmp.mapping(
@@ -55,9 +53,9 @@ local lazy_cmp_config = function()
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
+      { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "vim_lsp" },
-      { name = "luasnip" },
     }, {
       { name = "path" },
       { name = "buffer", keyword_length = 4 },
@@ -114,25 +112,25 @@ local M = {
         "hrsh7th/cmp-nvim-lsp",
       },
       {
-        "hrsh7th/cmp-nvim-lua",
-      },
-      {
         "hrsh7th/cmp-buffer",
       },
       {
         "hrsh7th/cmp-path",
       },
       {
-        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
       },
       {
-        "saadparwaiz1/cmp_luasnip",
+          "onsails/lspkind-nvim",
       },
       {
         "L3MON4D3/LuaSnip",
       },
       {
-        "onsails/lspkind-nvim",
+        "hrsh7th/cmp-nvim-lua",
+      },
+      {
+        "hrsh7th/cmp-cmdline",
       },
     },
   },

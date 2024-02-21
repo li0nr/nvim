@@ -65,7 +65,7 @@ local M = {
     dependencies = { "folke/which-key.nvim" },
     config = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 500
+      vim.o.timeoutlen = 800
       local legendary = require("legendary")
       legendary.setup({
         sort = {

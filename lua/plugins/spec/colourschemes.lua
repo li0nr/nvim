@@ -6,21 +6,6 @@ loaded very lazily.
 
 local M = {
   {
-    "navarasu/onedark.nvim",
-    event = "VeryLazy",
-    -- priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme "onedark"
-    end,
-  },
-  {
-    "folke/tokyonight.nvim",
-    event = "VeryLazy",
-    config = function()
-
-    end
-  },
-  {
     "catppuccin/nvim",
     -- event = "VeryLazy",
     priority = 1000,
@@ -67,12 +52,12 @@ local M = {
   },
   {
     "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-
-    end
-    },
-   
+    event = "VeryLazy",
+  },
+  {
+    "mcchrish/zenbones.nvim",
+    requires = "rktjmp/lush.nvim",
+  },
 }
 
 return M

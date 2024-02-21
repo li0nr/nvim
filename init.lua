@@ -41,7 +41,9 @@ require("options")
 require("keymaps")
 require("autocommands")
 
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme rose-pine-moon")
+vim.cmd("hi clear SpellBad")
+vim.opt.termguicolors = true
 -------------------------------------------------------------------------------
 -- couple of more notes the lua folder is searched in by lua by default.
 -- the plugins on the other hand is also added to runtimepath of lua and that's

@@ -22,7 +22,7 @@ M.setup_native_buffer_mappings = function(
       ["gD"]         = { vim.lsp.buf.declaration, lsp_prefix("goto [D]eclaration") },
       ["gi"]         = { vim.lsp.buf.implementation, lsp_prefix("goto [i]mplementation") },
       ["gh"]         = { vim.lsp.buf.hover, lsp_prefix("hover documentation") },
-      ["<F2>"]       = { vim.lsp.buf.rename, lsp_prefix("rename identifier under cursor") },
+      ["<leader>rn"]       = { vim.lsp.buf.rename, lsp_prefix("rename identifier under cursor") },
       ["<leader>ca"] = {
         require("actions-preview").code_actions,
         "lsp: [c]ode [a]ctions",
@@ -34,20 +34,22 @@ M.setup_native_buffer_mappings = function(
         "lsp: Signature help",
       },
       -- `Format` user command is setup during `conform` setup.
-      ["<leader>lf"] = { "<Cmd>Format<Cr>", lsp_prefix("[f]ormat buffer") },
-      -- https://github.com/aznhe21/actions-preview.nvim
-
-      -- a lot of not needed noise
-      --[[ ["lk"] = { vim.lsp.buf.signature_help, lsp_prefix("[k] signature help") },
-    ["lt"] = {
-      vim.lsp.buf.type_definition,
-      lsp_prefix("goto [t]ype definition"),
-    },]]
+      ["<leader>fb"] = {
+        function()
+          vim.lsp.buf.format { async = true }
+        end,
+            "lsp: format buffer"
+       },
     },
     { mode = "n", buffer = bufnr }) --prefix = "<leader>",
-  which_key.register({
-    ["1f"] = { "<Cmd>Format<Cr>", "[l]sp: symbols [o]utline" },
-  }, { mode = "v", prefix = "<leader>", buffer = bufnr })
+
+    which_key.register({
+        ["1f"] = {
+            function()
+                vim.lsp.buf.format { async = true }
+            end, "visual formatter"
+        },
+    }, { mode = "v", prefix = "<leader>", buffer = bufnr })
 end
 
 M.setup_plugin_buffer_mappings = function(

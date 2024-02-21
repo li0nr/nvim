@@ -9,37 +9,46 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- Move lines
 -- replaced C [CTRL] with shift to allow tmux navigaiton to work
-vim.keymap.set("i", "<C-j>", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
-vim.keymap.set("i", "<C-k>", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
-vim.keymap.set("n", "<S-j>", "<cmd>m .+1<Cr>==", { desc = "Move down" })
-vim.keymap.set("n", "<S-k>", "<cmd>m .-2<Cr>==", { desc = "Move up" })
-vim.keymap.set("v", "<S-j>", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
-vim.keymap.set("v", "<S-k>", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
+-- vim.keymap.set("i", "down", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
+-- vim.keymap.set("i", "up", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
+-- vim.keymap.set("n", "down", "<cmd>m .+1<Cr>==", { desc = "Move down" })
+-- vim.keymap.set("n", "up", "<cmd>m .-2<Cr>==", { desc = "Move up" })
+-- vim.keymap.set("v", "down", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
+-- vim.keymap.set("v", "up", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
+-- mac os specific ALT-j, ALT-k
+vim.keymap.set("i", "˚", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
+vim.keymap.set("i", "∆", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
+
+vim.keymap.set("n", "˚", "<cmd>m .-2<Cr>==", { desc = "Move up" })
+vim.keymap.set("n", "∆", "<cmd>m .+1<Cr>==", { desc = "Move down" })
+
+vim.keymap.set("v", "˚", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
+vim.keymap.set("v", "∆", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
 
 -- Resize with arrows
 vim.keymap.set(
-  "n",
-  "<C-Up>",
-  "<Cmd>resize -4<Cr>",
-  NOREMAP("Resize window ⬆️ by 4")
+    "n",
+    "–", --<M-->",
+    "<Cmd>resize -4<Cr>",
+  NOREMAP("Resize window up by 4")
 )
 vim.keymap.set(
   "n",
-  "<C-Down>",
-  "<Cmd>resize +4<Cr>",
-  NOREMAP("Resize window ⬇️ by 4")
+  "≠", --<M-=>",
+    "<Cmd>resize +4<Cr>",
+  NOREMAP("Resize window down by 4")
 )
 vim.keymap.set(
   "n",
-  "<C-Left>",
+  "‘", --"<M-h>",
   "<Cmd>vertical resize -4<Cr>",
-  NOREMAP("Resize window ⬅️ by 4")
+  NOREMAP("Resize window left by 4")
 )
 vim.keymap.set(
   "n",
-  "<C-Right>",
+  "“", --"<M-Right>",
   "<Cmd>vertical resize +4<Cr>",
-  NOREMAP("Resize window ➡️ by 4")
+  NOREMAP("Resize window right by 4")
 )
 
 -- Remap for dealing with word wrap
@@ -73,3 +82,6 @@ vim.keymap.set('n', '<Leader>ds', ':hi clear SpellBad<CR>', { noremap = true , s
 vim.keymap.set('n', '<Leader>es', ':hi SpellBad cterm=underline gui=undercurl<CR>', { noremap = true , silent = true  })
 
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true })
+vim.keymap.set('n', 'n', "nzz", { noremap = true , silent = true  })
+
+vim.keymap.set('n', 'N', "Nzz", { noremap = true , silent = true  })

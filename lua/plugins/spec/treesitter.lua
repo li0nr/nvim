@@ -23,7 +23,7 @@ local M = {
     config = function()
       local ts_context = require("treesitter-context")
       ts_context.setup({
-        max_lines = 3,          -- How many lines the window should span. Values <= 0 mean no limit.
+        max_lines = 1,          -- How many lines the window should span. Values <= 0 mean no limit.
         min_window_height = 10, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
       })
       vim.keymap.set("n", "[c", function()

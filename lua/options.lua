@@ -179,6 +179,8 @@ vim.opt.fillchars = {
   vertright = "┣",
   verthoriz = "╋",
 }
+
+vim.opt.fillchars = { stlnc = 'X', vert = '|', fold = '-', diff = '-'} --stl = '^',
 -- Characters to fill the statuslines, vertical separators and special
 -- lines in the window.
 -------------------------------------------------------------------------------
@@ -316,3 +318,5 @@ vim.opt.inccommand = "split"
 
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+
+vim.opt.colorcolumn = "120"
