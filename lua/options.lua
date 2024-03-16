@@ -180,7 +180,7 @@ vim.opt.fillchars = {
   verthoriz = "╋",
 }
 
-vim.opt.fillchars = { stlnc = 'X', vert = '|', fold = '-', diff = '-'} --stl = '^',
+vim.opt.fillchars = {stl = '^', stlnc = '#', vert = '|', fold = '-', diff = '-'}
 -- Characters to fill the statuslines, vertical separators and special
 -- lines in the window.
 -------------------------------------------------------------------------------

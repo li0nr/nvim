@@ -57,58 +57,59 @@ local M = {
     "folke/which-key.nvim",
     config = which_key_lazy_config,
   },
-  {
-    -- https://github.com/mrjones2014/legendary.nvim
-    "mrjones2014/legendary.nvim",
-    version = "v2.1.0",
-    event = "VeryLazy",
-    dependencies = { "folke/which-key.nvim" },
-    config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 800
-      local legendary = require("legendary")
-      legendary.setup({
-        sort = {
-          frecency = false,
-        },
-        lazy_nvim = { auto_register = true },
-        which_key = {
-          auto_register = true,
-          do_binding = false,
-          use_groups = true,
-        },
-        log_level = "warn",
-      })
+--   {
+--     -- https://github.com/mrjones2014/legendary.nvim
+--     "mrjones2014/legendary.nvim",
+--     version = "v2.1.0",
+--     event = "VeryLazy",
+--     dependencies = { "folke/which-key.nvim" },
+--     config = function()
+--       vim.o.timeout = true
+--       vim.o.timeoutlen = 800
+--       local legendary = require("legendary")
+--       legendary.setup({
+--         sort = {
+--           frecency = false,
+--         },
+--         lazy_nvim = { auto_register = true },
+--         which_key = {
+--           auto_register = true,
+--           do_binding = false,
+--           use_groups = true,
+--         },
+--         log_level = "warn",
+--       })
+--
+--       require("which-key").register({
+--         ["k"] = {
+--           function()
+--             legendary.find({
+--               filters = {
+--                 require("legendary.filters").keymaps(),
+--               },
+--               formatter = nil,
+--               select_prompt = "⚡ Legendary: Keymaps ⚡",
+--             })
+--           end,
+--           "legendary: [k]eys",
+--         },
+--         ["m"] = {
+--           function()
+--             legendary.find({
+--               filters = {
+--                 require("legendary.filters").keymaps(),
+--                 require("legendary.filters").current_mode(),
+--               },
+--               formatter = nil,
+--               select_prompt = "⚡ Legendary: Keymaps (mode) ⚡",
+--             })
+--           end,
+--           "legendary: [m]ode keys",
+--         },
+--       }, { prefix = "<leader>" })
+--     end,
+--   },
+ }
 
-      require("which-key").register({
-        ["k"] = {
-          function()
-            legendary.find({
-              filters = {
-                require("legendary.filters").keymaps(),
-              },
-              formatter = nil,
-              select_prompt = "⚡ Legendary: Keymaps ⚡",
-            })
-          end,
-          "legendary: [k]eys",
-        },
-        ["m"] = {
-          function()
-            legendary.find({
-              filters = {
-                require("legendary.filters").keymaps(),
-                require("legendary.filters").current_mode(),
-              },
-              formatter = nil,
-              select_prompt = "⚡ Legendary: Keymaps (mode) ⚡",
-            })
-          end,
-          "legendary: [m]ode keys",
-        },
-      }, { prefix = "<leader>" })
-    end,
-  },
-}
 
 return M

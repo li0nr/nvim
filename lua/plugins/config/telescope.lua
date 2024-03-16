@@ -262,16 +262,17 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
   -- the keymap, given a description with highlighted letters.
 
   -- leader is set at prefix at the end, just to avoid additional indentation
-  which_key.register({
-    ["b"] = {
-      function()
-        find_files_in_buffer_dir()
-      end,
-      "search files in [b]uffer's directory",
-    },
-  }, { prefix = "<leader>" })
+  -- which_key.register({
+  --   ["b"] = {
+  --     function()
+  --       find_files_in_buffer_dir()
+  --     end,
+  --     "search files in [b]uffer's directory",
+  --   },
+  -- }, { prefix = "<leader>" })
 
   which_key.register({
+    b = { telescope_builtin.buffers, "[s]earch open [b]uffers" },
     s = {
       name = "+Search fuzzy",
       f = {
@@ -298,7 +299,6 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
         end,
         "[s]earch current [w]ord in project",
       },
-      b = { telescope_builtin.buffers, "[s]earch open [b]uffers" },
       o = { telescope_builtin.oldfiles, "[s]earch [o]ld files" },
       c = {
         function()
@@ -351,7 +351,8 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
         "[s]earch [k]eymaps",
       },
     },
-    e = {
+    --[[
+    --e = {
       name = "+File [e]xplorer",
       w = {
         function()
@@ -367,6 +368,8 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
         "browse files in buff[e]r dir",
       },
     },
+    ]]
+
   }, { prefix = "<leader>" })
 
   ------------------------------------------------------------------------------
@@ -401,26 +404,6 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
           })
         end,
         "fu[z]zy find in [j]ournal",
-      },
-      b = {
-        function()
-          telescope_builtin.find_files({
-            prompt_title = "bash config fuzzy",
-            cwd = "~/dot-bash/",
-            hidden = true,
-          })
-        end,
-        "fu[z]zy find [b]ash config",
-      },
-      t = {
-        function()
-          telescope_builtin.find_files({
-            prompt_title = "tmux config fuzzy",
-            cwd = "~/dot-tmux/",
-            hidden = true,
-          })
-        end,
-        "fu[z]zy find [t]mux config",
       },
     },
     v = {
@@ -467,7 +450,28 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
           })
         end,
         "fa[v]: [t]mux config",
-      }, ]]
+      },
+      b = {
+        function()
+          telescope_builtin.find_files({
+            prompt_title = "bash config fuzzy",
+            cwd = "~/dot-bash/",
+            hidden = true,
+          })
+        end,
+        "fu[z]zy find [b]ash config",
+      },
+      t = {
+        function()
+          telescope_builtin.find_files({
+            prompt_title = "tmux config fuzzy",
+            cwd = "~/dot-tmux/",
+            hidden = true,
+          })
+        end,
+        "fu[z]zy find [t]mux config",
+      },
+      ]]
     },
   }, { prefix = "<leader>" })
 

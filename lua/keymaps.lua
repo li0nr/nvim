@@ -6,6 +6,8 @@ vim.keymap.set("i", "jk", "<Esc>", NOREMAP("Escape using jk"))
 
 -- Purge selection into black hole and paste over it
 vim.keymap.set("x", "<leader>p", [["_dP]])
+-- just delete secltion.
+vim.keymap.set("x", "<leader>d", [["_d]])
 
 -- Move lines
 -- replaced C [CTRL] with shift to allow tmux navigaiton to work
@@ -15,13 +17,14 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- vim.keymap.set("n", "up", "<cmd>m .-2<Cr>==", { desc = "Move up" })
 -- vim.keymap.set("v", "down", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
 -- vim.keymap.set("v", "up", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
+-- Mac os specific disabled all other modes just use it in visual mode.
+-- vim.keymap.set("i", "˚", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
+-- vim.keymap.set("i", "∆", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
+--
+-- vim.keymap.set("n", "˚", "<cmd>m .-2<Cr>==", { desc = "Move up" })
+-- vim.keymap.set("n", "∆", "<cmd>m .+1<Cr>==", { desc = "Move down" })
+
 -- mac os specific ALT-j, ALT-k
-vim.keymap.set("i", "˚", "<Esc><Cmd>m .-2<Cr>==gi", { desc = "Move up" })
-vim.keymap.set("i", "∆", "<Esc><Cmd>m .+1<Cr>==gi", { desc = "Move down" })
-
-vim.keymap.set("n", "˚", "<cmd>m .-2<Cr>==", { desc = "Move up" })
-vim.keymap.set("n", "∆", "<cmd>m .+1<Cr>==", { desc = "Move down" })
-
 vim.keymap.set("v", "˚", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
 vim.keymap.set("v", "∆", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
 
