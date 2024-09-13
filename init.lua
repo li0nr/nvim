@@ -41,7 +41,7 @@ require("options")
 require("keymaps")
 require("autocommands")
 
-vim.cmd("colorscheme rose-pine-moon")
+vim.cmd("colorscheme duskfox")
 vim.cmd("hi clear SpellBad")
 vim.opt.termguicolors = true
 -------------------------------------------------------------------------------

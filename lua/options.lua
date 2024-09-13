@@ -24,7 +24,7 @@ vim.wildoptions = "pum"
 -- |ins-completion-menu|.
 -------------------------------------------------------------------------------
 
-vim.opt.cmdheight = 1 
+vim.opt.cmdheight = 1
 -- Number of screen lines to use for the command-line.  Helps avoiding
 -------------------------------------------------------------------------------
 
@@ -204,7 +204,14 @@ vim.opt.undofile = true
 -------------------------------------------------------------------------------
 
 vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
+-- vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
+
+function SetShiftwidthToFour()
+  vim.opt.shiftwidth = 4
+end
+vim.api.nvim_create_user_command('SetShiftwidthToFour', SetShiftwidthToFour, {})
+
 -- vim.opt.tabstop = 2
 -- Tab settings
 -- expandtab
