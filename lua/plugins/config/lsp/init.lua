@@ -72,8 +72,8 @@ local setup_other_lsps = function(lspconfig)
   for _, server in ipairs({
     "bashls",
     "cmake",
-    "pyright",
     --[[ "dotls",
+    "pyright",
     "dockerls",
     "tsserver",
     "vimls",
@@ -143,6 +143,7 @@ M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
   require("plugins.config.lsp.clangd").setup()
   require("plugins.config.lsp.lua_ls").setup()
   require("plugins.config.lsp.ruff_lsp").setup()
+  require("plugins.config.lsp.pyright").setup()
 
   setup_other_lsps(lspconfig)
 end

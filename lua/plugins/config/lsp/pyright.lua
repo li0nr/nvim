@@ -1,4 +1,5 @@
 
+
 local M = {}
 
 M.setup = function()
@@ -8,17 +9,20 @@ M.setup = function()
     vanilla.setup_native_buffer_mappings(client, bufnr)
     vanilla.setup_plugin_buffer_mappings(client, bufnr)
     vanilla.setup_autocmds(client, bufnr)
-    client.server_capabilities.hoverProvider = false
   end
 
-  require("lspconfig").ruff_lsp.setup({
+  require("lspconfig").pyright.setup({
     on_attach = on_attach,
     capabilities = vanilla.capabilities,
     settings = {
-      Lua = {
-        workspace = { checkThirdParty = false },
-        telemetry = {
-          enable = false,
+      pyright = {
+        -- Using Ruff's import organizer
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          ignore = { '*' },
         },
       },
     },
