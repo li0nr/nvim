@@ -79,10 +79,10 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 vim.keymap.set("n", "<leader>nn",  ':set relativenumber!<CR>:highlight LineNr guibg=none guifg=#ffffff<CR>', {noremap = true, silent = true})
 -- Mapping to disable spelling error highlighting
-vim.keymap.set('n', '<Leader>ds', ':hi clear SpellBad<CR>', { noremap = true , silent = true})
+vim.keymap.set('n', '<Leader>sd', ':hi clear SpellBad<CR>', { noremap = true , silent = true})
 
 -- Mapping to enable spelling error highlighting
-vim.keymap.set('n', '<Leader>es', ':hi SpellBad cterm=underline gui=undercurl<CR>', { noremap = true , silent = true  })
+vim.keymap.set('n', '<Leader>se', ':hi SpellBad cterm=underline gui=undercurl<CR>', { noremap = true , silent = true  })
 
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true })
 vim.keymap.set('n', 'n', "nzz", { noremap = true , silent = true  })
