@@ -68,9 +68,15 @@ M.setup = function()
         "^.git/",
       },
       mappings = {
-        i = { ["<C-q>"] = trouble_telescope.open_with_trouble },
+        i = { ["<C-q>"] = trouble_telescope.open_with_trouble, ["<C-e>"] = actions.to_fuzzy_refine },
         n = { ["<C-q>"] = trouble_telescope.open_with_trouble },
       },
+      cache_picker = {num_pickers = 10},
+      dynamic_preview_title = true,
+      layout_strategy = "vertical",
+      layout_config = {vertical = {width = 0.9, height = 0.9, preview_height = 0.6, preview_cutoff = 0}},
+      -- path_display = {"smart", shorten = {len = 3}},
+      wrap_results = true
     },
     extensions = {
       fzf = {},
@@ -476,6 +482,19 @@ if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
   }, { prefix = "<leader>" })
 
   ------------------------------------------------------------------------------
+  -- Return a list of files found in quickfix, skipping duplicates
+  config = function()
+    require("telescope").setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-e>"] = require("telescope.actions").to_fuzzy_refine,
+          },
+        },
+      },
+    })
+    require("telescope").load_extension("fzf")
+  end
 end
 
 return M
