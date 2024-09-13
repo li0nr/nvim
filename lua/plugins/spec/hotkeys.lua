@@ -11,6 +11,10 @@ local which_key_lazy_config = function()
     layout = {
       height = { min = 5, max = 10 },
     },
+    disable = {
+      filetypes = {"cpp", "py"},
+      buftypes  = {"cpp", "py"},
+    },
   })
 
   local tab_prefix = function(desc)
