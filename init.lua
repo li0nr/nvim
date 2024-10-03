@@ -41,7 +41,9 @@ require("options")
 require("keymaps")
 require("autocommands")
 
-vim.cmd("colorscheme duskfox")
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd("colorscheme duskfox")
 vim.cmd("hi clear SpellBad")
 vim.opt.termguicolors = true
 -------------------------------------------------------------------------------
