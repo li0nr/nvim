@@ -24,9 +24,12 @@ vim.keymap.set("x", "<leader>d", [["_d]])
 -- vim.keymap.set("n", "˚", "<cmd>m .-2<Cr>==", { desc = "Move up" })
 -- vim.keymap.set("n", "∆", "<cmd>m .+1<Cr>==", { desc = "Move down" })
 
--- mac os specific ALT-j, ALT-k
+-- iterm specific ALT-j, ALT-k
 vim.keymap.set("v", "˚", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
 vim.keymap.set("v", "∆", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
+
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 
 -- Resize with arrows
 vim.keymap.set(
@@ -88,3 +91,4 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true })
 vim.keymap.set('n', 'n', "nzz", { noremap = true , silent = true  })
 
 vim.keymap.set('n', 'N', "Nzz", { noremap = true , silent = true  })
+
