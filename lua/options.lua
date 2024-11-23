@@ -323,7 +323,9 @@ vim.opt.inccommand = "split"
 -- type.
 -------------------------------------------------------------------------------
 
-vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+vim.opt.spelloptions = "camel"
+vim.opt.spellcapcheck = ""
 
 vim.opt.colorcolumn = "120"

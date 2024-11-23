@@ -92,3 +92,12 @@ vim.keymap.set('n', 'n', "nzz", { noremap = true , silent = true  })
 
 vim.keymap.set('n', 'N', "Nzz", { noremap = true , silent = true  })
 
+-- Function to copy the file path to the clipboard
+local function copy_file_path()
+  local file_path = vim.fn.expand('%') -- Relative path to where Neovim was launched
+  vim.fn.setreg('+', file_path)        -- Copy to the system clipboard (register '+')
+  --print("Copied to clipboard: " .. file_path)
+end
+
+-- Map the function to <leader>cp
+vim.keymap.set('n', '<leader>cp', copy_file_path, { noremap = true, silent = true })

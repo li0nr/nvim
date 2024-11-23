@@ -35,17 +35,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins.spec")
-
 -------------------------------------------------------------------------------
 require("options")
 require("keymaps")
 require("autocommands")
+require("post")
 
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
--- vim.cmd("colorscheme duskfox")
-vim.cmd("hi clear SpellBad")
-vim.opt.termguicolors = true
 -------------------------------------------------------------------------------
 -- couple of more notes the lua folder is searched in by lua by default.
 -- the plugins on the other hand is also added to runtimepath of lua and that's
