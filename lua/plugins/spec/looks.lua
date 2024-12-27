@@ -30,6 +30,24 @@ local M = {
     config = function()
       require("ibl").setup({
         indent = { char = "▏" },
+        exclude = {
+          filetypes = {
+            'help',
+            'startify',
+            'aerial',
+            'alpha',
+            'dashboard',
+            'packer',
+            'neogitstatus',
+            'NvimTree',
+            'neo-tree',
+            'Trouble',
+          },
+          buftypes = {
+            'nofile',
+            'terminal',
+          },
+        },
       })
     end,
   },

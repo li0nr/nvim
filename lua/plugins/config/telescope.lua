@@ -84,7 +84,8 @@ M.setup = function()
     },
   })
 
-if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
+  -- remove telescope on startup
+  -- if vim.fn.argv(0) == '' then vim.cmd('Telescope find_files') end
 
   --[[==========================================================================
   Find project root directory
