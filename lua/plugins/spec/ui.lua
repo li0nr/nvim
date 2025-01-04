@@ -9,10 +9,36 @@ return {
       })
     end,
   },
-
-  { "folke/snacks.nvim", opts = { dashboard = { enabled = false } } },
   {
-    "nvimdev/dashboard-nvim",
+    -- https://github.com/lukas-reineke/indent-blankline.nvim
+    "lukas-reineke/indent-blankline.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("ibl").setup({
+        indent = { char = "▏" },
+	exclude = {
+          filetypes = {
+            'help',
+            'startify',
+            'aerial',
+            'alpha',
+            'dashboard',
+            'packer',
+            'neogitstatus',
+            'NvimTree',
+            'neo-tree',
+            'Trouble',
+          },
+          buftypes = {
+            'nofile',
+            'terminal',
+          },
+        },
+      })
+    end,
+  },
+  {
+	"nvimdev/dashboard-nvim",
     lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
     opts = function()
       local logo = [[
@@ -77,4 +103,24 @@ return {
       return opts
     end,
   },
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("dressing").setup({
+  --       input = {
+  --         enabled = true,
+  --         default_prompt = "Input> ",
+  --       },
+  --     })
+  --   end,
+  -- },
+  -- removed for no real use for these modules
+  -- https://github.com/folke/zen-mode.nvim
+  -- https://github.com/folke/twilight.nvim
+  -- https://github.com/lukas-reineke/virt-column.nvim
+  -- https://github.com/folke/todo-comments.nvim
+  -- https://github.com/lukas-reineke/headlines.nvim
+  -- https://github.com/RRethy/vim-illuminate
+
 }
