@@ -8,6 +8,7 @@ local M = {
     version = '*',
     config = function()
       require('mini.comment').setup()
+      require('mini.ai').setup()
       require('mini.surround').setup()
       require("mini.pairs").setup({
         mappings = {
