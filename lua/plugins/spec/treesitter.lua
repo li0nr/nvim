@@ -26,7 +26,8 @@ local M = {
         max_lines = 1,          -- How many lines the window should span. Values <= 0 mean no limit.
         min_window_height = 10, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
       })
-      vim.keymap.set("n", "[c", function()
+      -- shows the context of the function you are currnetly in.
+      vim.keymap.set("n", "<leader>fg", function()
         ts_context.go_to_context()
       end, NOREMAP_SILENT("Go to context"))
       vim.keymap.set("n", "<leader>fc", function()
