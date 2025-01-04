@@ -51,4 +51,16 @@ require("post")
 --https://github.com/hedyhli/outline.nvim 
 --https://github.com/ubaldot/vim-outline
 --https://github.com/rebelot/kanagawa.nvim?tab=readme-ov-file 
+--https://github.com/nanozuki/tabby.nvim
+--https://github.com/LukasPietzschmann/telescope-tabs
+--https://github.com/ggandor/leap.nvim
+--https://github.com/jinh0/eyeliner.nvim
+--https://github.com/tpope/vim-repeat
+--https://github.com/akinsho/toggleterm.nvim
+----https://github.com/folke/trouble.nvim
+
+--
+--https://github.com/kylechui/nvim-surround replaced with mini.nvim stuff
+--https://github.com/numToStr/Comment.nvim
+--https://github.com/windwp/nvim-autopairs
 
