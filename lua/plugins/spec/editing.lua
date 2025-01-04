@@ -1,33 +1,24 @@
 local M = {
   {
-    -- https://github.com/kylechui/nvim-surround
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = true,
-  },
-  {
-    -- https://github.com/windwp/nvim-autopairs
-    "windwp/nvim-autopairs",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
-    -- https://github.com/numToStr/Comment.nvim
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
     -- https://github.com/farmergreg/vim-lastplace
     "farmergreg/vim-lastplace",
   },
-    --[[ {
-    -- https://github.com/mzlogin/vim-markdown-toc
-    "mzlogin/vim-markdown-toc",
-    event = "VeryLazy",
-    ft = "markdown",
-  }, ]]
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    config = function()
+      require('mini.comment').setup()
+      require('mini.surround').setup()
+      require("mini.pairs").setup({
+        mappings = {
+          ["`"] = false,
+        },
+      })
+    end
+  },
 }
 
+-- removed for mini
+-- https://github.com/kylechui/nvim-surround
+-- https://github.com/numToStr/Comment.nvim
 return M
