@@ -184,6 +184,8 @@ M.setup = function()
   end
 
   -- grep functions
+  -- live grep seems suitable for greps you need to escape some special chars.
+  -- handle_async_ctx_.*_static\(&.*\)
   local live_grep_in_project = function()
     local cwd, is_git = get_project_root()
     telescope_builtin.live_grep({
