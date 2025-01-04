@@ -6,7 +6,7 @@ vim.keymap.set("i", "jk", "<Esc>", NOREMAP("Escape using jk"))
 
 -- Purge selection into black hole and paste over it
 vim.keymap.set("x", "<leader>p", [["_dP]])
--- just delete secltion.
+-- just delete selection.
 vim.keymap.set("x", "<leader>d", [["_d]])
 
 -- Move lines
@@ -25,8 +25,8 @@ vim.keymap.set("x", "<leader>d", [["_d]])
 -- vim.keymap.set("n", "∆", "<cmd>m .+1<Cr>==", { desc = "Move down" })
 
 -- iterm specific ALT-j, ALT-k
-vim.keymap.set("v", "˚", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
-vim.keymap.set("v", "∆", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
+-- vim.keymap.set("v", "˚", ":m '<-2<Cr>gv=gv", { desc = "Move up" })
+-- vim.keymap.set("v", "∆", ":m '>+1<Cr>gv=gv", { desc = "Move down" })
 
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
@@ -99,5 +99,7 @@ local function copy_file_path()
   --print("Copied to clipboard: " .. file_path)
 end
 
--- Map the function to <leader>cp
+-- Map keys to allow for coping file/dir paths.
 vim.keymap.set('n', '<leader>cp', copy_file_path, { noremap = true, silent = true })
+-- Map spell suggest in telescope map
+vim.keymap.set('n', '<leader>zf', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })

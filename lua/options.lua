@@ -180,7 +180,7 @@ vim.opt.fillchars = {
   verthoriz = "╋",
 }
 
-vim.opt.fillchars = {stl = '^', stlnc = '#', vert = '|', fold = '-', diff = '-'}
+-- vim.opt.fillchars = {stl = '^', stlnc = '#', vert = '|', fold = '-', diff = '-'}
 -- Characters to fill the statuslines, vertical separators and special
 -- lines in the window.
 -------------------------------------------------------------------------------
@@ -323,9 +323,16 @@ vim.opt.inccommand = "split"
 -- type.
 -------------------------------------------------------------------------------
 
-vim.opt.spell = true
-vim.opt.spelllang = "en_us"
-vim.opt.spelloptions = "camel"
-vim.opt.spellcapcheck = ""
 
 vim.opt.colorcolumn = "120"
+-- Spelling ===================================================================
+vim.opt.spell       = true
+vim.o.spelllang       =
+'en'             -- Define spelling dictionaries
+vim.o.spelloptions    =
+'camel'          -- Treat parts of camelCase words as seprate words
+vim.o.complete        =
+'.,w,b,u,kspell' -- Use spell check and don't use tags for completion
+
+vim.o.dictionary      = vim.fn.stdpath('config') ..
+    '/Users/ramy.fakhoury/Projects/Private/dict/english.txt' -- Use specific dictionaries
