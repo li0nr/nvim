@@ -16,7 +16,7 @@ return {
     config = function()
       require("ibl").setup({
         indent = { char = "▏" },
-	exclude = {
+        exclude = {
           filetypes = {
             'help',
             'startify',
@@ -38,7 +38,7 @@ return {
     end,
   },
   {
-	"nvimdev/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
     opts = function()
       local logo = [[
@@ -122,5 +122,7 @@ return {
   -- https://github.com/folke/todo-comments.nvim
   -- https://github.com/lukas-reineke/headlines.nvim
   -- https://github.com/RRethy/vim-illuminate
+  --
+  -- Maybe change dashboard + indent blankline to snacks.nvim
 
 }
