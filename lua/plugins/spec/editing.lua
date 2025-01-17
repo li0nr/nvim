@@ -15,6 +15,30 @@ local M = {
           ["`"] = false,
         },
       })
+      -- maybe move all mini stuff onto seprate file
+      require("mini.files").setup({
+        vim.keymap.set("n", "<leader>o", function()
+          require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        end, { desc = "Open mini.files (Directory of Current File)" }),
+
+        -- Module mappings created only inside explorer.
+        -- Use `''` (empty string) to not create one.
+        mappings = {
+          close       = 'q',
+          go_in       = 'n',
+          go_in_plus  = 'N',
+          go_out      = 'p',
+          go_out_plus = 'P',
+          mark_goto   = "'",
+          mark_set    = 'm',
+          reset       = '<BS>',
+          reveal_cwd  = '@',
+          show_help   = 'g?',
+          synchronize = 's',
+          trim_left   = '<',
+          trim_right  = '>',
+        },
+      })
     end
   },
 }

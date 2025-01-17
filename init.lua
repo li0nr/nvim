@@ -63,4 +63,5 @@ require("post")
 --https://github.com/kylechui/nvim-surround replaced with mini.nvim stuff
 --https://github.com/numToStr/Comment.nvim
 --https://github.com/windwp/nvim-autopairs
+--https://github.com/stevearc/oil.nvim
 
