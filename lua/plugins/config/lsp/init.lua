@@ -144,6 +144,7 @@ M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
   require("plugins.config.lsp.lua_ls").setup()
   require("plugins.config.lsp.ruff_lsp").setup()
   require("plugins.config.lsp.pyright").setup()
+  require("plugins.config.lsp.zls").setup()
 
   setup_other_lsps(lspconfig)
 end

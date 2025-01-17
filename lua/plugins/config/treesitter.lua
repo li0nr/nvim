@@ -73,6 +73,7 @@ local setup_treesitter = function()
       "bash",
       "python",
       "c",
+      "zig",
       "cmake",
       "comment",
       "cpp",
