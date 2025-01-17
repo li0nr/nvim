@@ -28,10 +28,6 @@ local which_key_lazy_config = function()
   -- Document existing mappings
   which_key.register({
     ["<leader><leader>w"] = { "<Cmd>WhichKey<Cr>", "Which Key" },
-    ["<leader><leader>"] = {
-      name = "oil | which_key",
-      _ = "which_key_ignore",
-    },
     ["<leader>c"] = { name = "code | colour ", _ = "which_key_ignore" },
     ["<leader>d"] = { name = "peek definition", _ = "which_key_ignore" },
     ["<leader>r"] = { name = "rename", _ = "which_key_ignore" },
