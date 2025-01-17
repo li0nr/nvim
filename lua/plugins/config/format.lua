@@ -92,7 +92,7 @@ M.setup_conform = function()
 end
 
 local function format_hunks()
-  local ignore_filetypes = {} --{ "lua" }
+  local ignore_filetypes = { "nofile" } --{ "lua" }
   if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
     vim.notify("range formatting for " .. vim.bo.filetype .. " not working properly.")
     return
@@ -107,7 +107,7 @@ local function format_hunks()
 
   local function format_range()
     if next(hunks) == nil then
-      print("done formatting! ")
+      -- print("done formatting! ")
       -- vim.notify("done formatting git hunks", "info", { title = "formatting" })
       return
     end
@@ -117,7 +117,7 @@ local function format_hunks()
     end
 
     if hunk ~= nil and hunk.type ~= "delete" then
-      print(hunk)
+      -- print(hunk)
       local start = hunk.added.start
       local last = start + hunk.added.count
       -- nvim_buf_get_lines uses zero-based indexing -> subtract from last
