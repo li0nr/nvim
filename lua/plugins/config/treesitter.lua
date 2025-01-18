@@ -1,110 +1,27 @@
 local M = {}
 
-local get_textobject_config = function()
-  return {
-    select = {
-      enable = true,
-      -- Automatically jump forward to textobj, similar to targets.vim
-      lookahead = true,
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ["af"] = {
-          query = "@function.outer",
-          desc = "Select: function.outer",
-        },
-        ["if"] = {
-          query = "@function.inner",
-          desc = "Select: function.inner",
-        },
-        ["ac"] = {
-          query = "@class.outer",
-          desc = "Select: class.outer",
-        },
-        ["ic"] = {
-          query = "@class.inner",
-          desc = "Select: class.inner",
-        },
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>a"] = {
-          query = "@parameter.inner",
-          desc = "Swap: parameter.next",
-        },
-      },
-      swap_previous = {
-        ["<leader>A"] = {
-          query = "@parameter.inner",
-          desc = "Swap: parameter.prev",
-        },
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-        ["]s"] = "@scope",
-        ["]z"] = "@fold",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
-  }
-end
-
 local setup_treesitter = function()
   local ts_config = require("nvim-treesitter.configs")
   ts_config.setup({
-    ensure_installed = {
-      "bash",
-      "python",
-      "c",
-      "cmake",
-      "comment",
-      "cpp",
-      "lua",
-      "markdown",
-      "vim",
-    },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    ensure_installed = { "bash", "python", "c", "cmake", "cpp", "lua", "markdown", "vim", },
     auto_install = false,
-    -- FIXME: - highlight is too slow in general
-    --        - to test open `~/.config/nvim/lua/options.lua` and scroll
-    --          down using `j` key, which `htop` running.
-    --highlight = {
-    --  enable = true,
-    --  -- disable = function(
-    --  --   _, --[[lang]]
-    --  --   bufnr
-    --  -- )
-    --  --   return vim.api.nvim_buf_line_count(bufnr) > 2500
-    --  -- end,
-    --},
     incremental_selection = {
       enable = true,
       keymaps = {
         init_selection    = "<leader>ss",
         node_incremental  = "<leader>si",
-        scope_incremental = "<leader>sc",
         node_decremental  = "<leader>sd",
       },
     },
     indent = { enable = true },
-    textobjects = get_textobject_config(),
-    autotag = { enable = true },
+    disable = function(_, buf)
+      local max_filesize = 100 * 1024 -- 100 KB
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
   })
 end
 
