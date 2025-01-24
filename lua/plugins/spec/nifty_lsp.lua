@@ -1,11 +1,5 @@
 local M = {
   {
-    -- https://github.com/j-hui/fidget.nvim
-    "j-hui/fidget.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = true,
-  },
-  {
     -- https://github.com/simrat39/symbols-outline.nvim
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",

@@ -92,12 +92,6 @@ M.setup_conform = function()
 end
 
 local function format_hunks()
-  local ignore_filetypes = { "nofile" } --{ "lua" }
-  if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
-    vim.notify("range formatting for " .. vim.bo.filetype .. " not working properly.")
-    return
-  end
-
   local hunks = require("gitsigns").get_hunks()
   if hunks == nil then
     return
@@ -140,6 +134,10 @@ require("conform").setup({
     -- Disable with a global or buffer-local variable
     if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
       print("Auto format disabled!")
+      return
+    end
+    if vim.bo.buftype == "nofile" or vim.bo.buftype == "nowrite" then
+      -- print("Skipping formatting for 'nofile' buffers.")
       return
     end
     -- Prefer to format git hunks instead of the entire file

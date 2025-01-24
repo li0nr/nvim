@@ -103,3 +103,6 @@ end
 vim.keymap.set('n', '<leader>cp', copy_file_path, { noremap = true, silent = true })
 -- Map spell suggest in telescope map
 vim.keymap.set('n', '<leader>zf', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })
+--- Quick fix navigaitons
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")

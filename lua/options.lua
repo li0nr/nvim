@@ -326,13 +326,10 @@ vim.opt.inccommand = "split"
 
 vim.opt.colorcolumn = "120"
 -- Spelling ===================================================================
-vim.opt.spell       = true
-vim.o.spelllang       =
-'en'             -- Define spelling dictionaries
-vim.o.spelloptions    =
-'camel'          -- Treat parts of camelCase words as seprate words
-vim.o.complete        =
-'.,w,b,u,kspell' -- Use spell check and don't use tags for completion
 
-vim.o.dictionary      = vim.fn.stdpath('config') ..
+vim.opt.spell       = true
+vim.o.spelllang     = 'en'                                   -- Define spelling dictionaries
+vim.o.spelloptions  = 'camel'                                -- Treat parts of camelCase words as seprate words
+vim.o.complete      = '.,w,b,u,kspell'                       -- Use spell check and don't use tags for completion
+vim.o.dictionary    = vim.fn.stdpath('config') ..
     '/Users/ramy.fakhoury/Projects/Private/dict/english.txt' -- Use specific dictionaries

@@ -64,4 +64,7 @@ require("post")
 --https://github.com/numToStr/Comment.nvim
 --https://github.com/windwp/nvim-autopairs
 --https://github.com/stevearc/oil.nvim
+--https://github.com/RRethy/vim-illuminate
+--https://github.com/folke/twilight.nvim
+--https://github.com/folke/zen-mode.nvim -- goes will with twilight
 

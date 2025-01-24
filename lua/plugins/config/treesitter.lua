@@ -14,6 +14,7 @@ local setup_treesitter = function()
         node_decremental  = "<leader>sd",
       },
     },
+    highlight = { enable = true },
     indent = { enable = true },
     disable = function(_, buf)
       local max_filesize = 100 * 1024 -- 100 KB

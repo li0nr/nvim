@@ -44,3 +44,35 @@ vim.api.nvim_create_autocmd("FileType", {
 --         vim.fn.setpos(".", save_cursor)
 --     end,
 -- })
+--
+
+-- dont check spelling for nofile types ===================================================================
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.bo.buftype == "nofile" or vim.bo.buftype == "nowrite" then
+      vim.wo.spell = false
+    end
+  end,
+  desc = "Disable spell checking for 'nofile' buffers",
+})
+
+
+-- closing Neovim with nofile buffs ===================================================================
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    -- Iterate through all open buffers
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.bo[buf].buftype == "nofile" or vim.bo[buf].buftype == "nowrite" then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end,
+  desc = "Close 'nofile' buffers when writing a regular buffer",
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { 'c', 'cpp', 'h' },
+  callback = function()
+    vim.opt.commentstring = "// %s"
+  end,
+  desc = "Change commentstring for c/c++ files",
+})

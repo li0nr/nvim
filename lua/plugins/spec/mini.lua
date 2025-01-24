@@ -13,9 +13,9 @@ local M =
       },
     })
 
-
     -- [[-- UI --]]
     require("mini.statusline").setup()
+    require("mini.notify").setup()
     -- require('mini.indentscope').setup()
     local indentscope = require('mini.indentscope')
     indentscope.setup({
@@ -101,6 +101,36 @@ local M =
         trim_right  = '>',
       },
     })
+
+    -- Centered on screen
+    local win_config = function()
+      local height = math.floor(0.618 * vim.o.lines)
+      local width = math.floor(0.4 * vim.o.columns)
+      return {
+        anchor = "NW",
+        height = height,
+        width = width,
+        border = "double",
+        row = math.floor(0.5 * (vim.o.lines - height)),
+        col = math.floor(0.5 * (vim.o.columns - width)),
+      }
+    end
+    require("mini.pick").setup({
+      mappings = {
+        choose_in_vsplit = "<C-CR>",
+      },
+      options = {
+        use_cache = true,
+      },
+      window = {
+        config = win_config,
+      },
+      mappings = {
+        refine        = '<C-e>',
+        refine_marked = '<C-m>',
+      },
+    })
+    vim.ui.select = MiniPick.ui_select
   end
 }
 
@@ -126,3 +156,4 @@ return M
 --  -- removed for mini
 -- https://github.com/kylechui/nvim-surround
 -- https://github.com/numToStr/Comment.nvim
+-- https://github.com/j-hui/fidget.nvim
