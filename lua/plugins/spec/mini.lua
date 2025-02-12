@@ -80,7 +80,7 @@ local M =
     -- maybe move all mini stuff onto seprate file
     require("mini.files").setup({
       vim.keymap.set("n", "<leader>o", function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        require("mini.files").open(vim.bo.filetype == 'ministarter' and vim.fn.getcwd() or vim.api.nvim_buf_get_name(0))
       end, { desc = "Open mini.files (Directory of Current File)" }),
 
       -- Module mappings created only inside explorer.
@@ -95,7 +95,7 @@ local M =
         mark_set    = 'm',
         reset       = '<BS>',
         reveal_cwd  = '@',
-        show_help   = 'g?',
+        show_help   = '?',
         synchronize = 's',
         trim_left   = '<',
         trim_right  = '>',
