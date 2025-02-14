@@ -32,30 +32,11 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 
 -- Resize with arrows
-vim.keymap.set(
-    "n",
-    "–", --<M-->",
-    "<Cmd>resize -4<Cr>",
-  NOREMAP("Resize window up by 4")
-)
-vim.keymap.set(
-  "n",
-  "≠", --<M-=>",
-    "<Cmd>resize +4<Cr>",
-  NOREMAP("Resize window down by 4")
-)
-vim.keymap.set(
-  "n",
-  "‘", --"<M-h>",
-  "<Cmd>vertical resize -4<Cr>",
-  NOREMAP("Resize window left by 4")
-)
-vim.keymap.set(
-  "n",
-  "“", --"<M-Right>",
-  "<Cmd>vertical resize +4<Cr>",
-  NOREMAP("Resize window right by 4")
-)
+vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+
 
 -- Remap for dealing with word wrap
 vim.keymap.set(
@@ -81,28 +62,52 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 vim.keymap.set("n", "<leader>nn",  ':set relativenumber!<CR>:highlight LineNr guibg=none guifg=#ffffff<CR>', {noremap = true, silent = true})
+-- ============== Quick fix navigations ===================
 -- Mapping to disable spelling error highlighting
 vim.keymap.set('n', '<Leader>sd', ':hi clear SpellBad<CR>', { noremap = true , silent = true})
-
 -- Mapping to enable spelling error highlighting
 vim.keymap.set('n', '<Leader>se', ':hi SpellBad cterm=underline gui=undercurl<CR>', { noremap = true , silent = true  })
 
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true })
 vim.keymap.set('n', 'n', "nzz", { noremap = true , silent = true  })
 
-vim.keymap.set('n', 'N', "Nzz", { noremap = true , silent = true  })
+vim.keymap.set('n', 'N', "Nzz", { noremap = true, silent = true })
 
--- Function to copy the file path to the clipboard
+-- Function to copy the file path to the clipboard ===================
 local function copy_file_path()
   local file_path = vim.fn.expand('%') -- Relative path to where Neovim was launched
   vim.fn.setreg('+', file_path)        -- Copy to the system clipboard (register '+')
-  --print("Copied to clipboard: " .. file_path)
 end
-
 -- Map keys to allow for coping file/dir paths.
-vim.keymap.set('n', '<leader>cp', copy_file_path, { noremap = true, silent = true })
--- Map spell suggest in telescope map
-vim.keymap.set('n', '<leader>zf', '<cmd>Telescope spell_suggest<cr>', { noremap = true, silent = true })
---- Quick fix navigaitons
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set('n', '<leader>cp', copy_file_path, { desc = "Copy file path", noremap = true, silent = true })
+
+-- ============== Quick fix navigations ===================
+local function safe_quickfix_nav(cmd, fallback)
+  local success = pcall(vim.cmd, cmd)
+  if not success then
+    vim.cmd(fallback)
+  end
+end
+vim.keymap.set('n', '<A-]>', function()
+  safe_quickfix_nav('cnext', 'cfirst')
+end, { noremap = true, silent = true, desc = 'Navigate to the next quickfix item' })
+
+vim.keymap.set('n', '<A-[>', function()
+  safe_quickfix_nav('cprev', 'clast')
+end, { noremap = true, silent = true, desc = 'Navigate to the previous quickfix item' })
+
+-- },
+-- ========================== Tabs ==========================
+local function tab_prefix(desc)
+  return "Tabs: " .. desc
+end
+-- Tab navigation
+vim.keymap.set("n", "]t", ":tabn<CR>", { desc = tab_prefix("→ Navigate Right") })
+vim.keymap.set("n", "[t", ":tabp<CR>", { desc = tab_prefix("← Navigate Left") })
+-- Leader-based tab management
+vim.keymap.set("n", "<leader>tn", ":$tabnew<CR>", { desc = tab_prefix("new Tab") })
+vim.keymap.set("n", "<leader>tc", ":tabclose<CR>", { desc = tab_prefix("close Tab") })
+vim.keymap.set("n", "<leader>th", ":tabp<CR>", { desc = tab_prefix("← Navigate Left") })
+vim.keymap.set("n", "<leader>tl", ":tabn<CR>", { desc = tab_prefix("→ Navigate Right") })
+vim.keymap.set("n", "<leader>tk", ":+tabmove<CR>", { desc = tab_prefix("↜ Move to Prev") })
+vim.keymap.set("n", "<leader>tj", ":-tabmove<CR>", { desc = tab_prefix("↝ Move to Next") })
