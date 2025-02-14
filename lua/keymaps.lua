@@ -111,3 +111,22 @@ vim.keymap.set("n", "<leader>th", ":tabp<CR>", { desc = tab_prefix("← Navigate
 vim.keymap.set("n", "<leader>tl", ":tabn<CR>", { desc = tab_prefix("→ Navigate Right") })
 vim.keymap.set("n", "<leader>tk", ":+tabmove<CR>", { desc = tab_prefix("↜ Move to Prev") })
 vim.keymap.set("n", "<leader>tj", ":-tabmove<CR>", { desc = tab_prefix("↝ Move to Next") })
+-- force close ;)
+vim.api.nvim_create_user_command("Wq", function()
+  -- Close special buffers like NvimTree, Outline, Quickfix
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local buftype = vim.bo[buf].buftype
+
+    -- If it's a special buffer, close the window
+    if buftype ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+
+  -- Save and quit Neovim
+  vim.cmd("wq")
+end, {})
+
+-- Make `:wq` behave the same as `:Wq`
+vim.keymap.set("n", "<leader>wq", "<Cmd>Wq<CR>", { desc = "Save and quit (closing special buffers)" })

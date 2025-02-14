@@ -65,13 +65,11 @@ local M = {
         format_on_save = function(bufnr)
           -- Disable with a global or buffer-local variable
           if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            print("Auto format disabled!")
             return
           end
           if vim.bo.buftype == "nofile" or vim.bo.buftype == "nowrite" or vim.bo.buftype == "quickfix" then
             return
           end
-          print("Formatting for 'nofile' buffers.")
           -- Prefer to format git hunks instead of the entire file
           format_hunks(bufnr)
         end,

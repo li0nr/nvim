@@ -32,6 +32,7 @@ local M =
         { action = function() require("snacks").picker.grep() end,  name = 'Grep',  section = 'Picker' },
         starter.sections.builtin_actions(),
         -- command_history
+        { action = function() if vim.fn.filereadable("session.nvim") == 1 then vim.cmd("source " .. "session.nvim") end end, name = 'Reload Session',  section = 'Picker' },
         { action = function() require("snacks").picker.command_history() end, name = 'Command history', section = 'Picker' },
         { action = function() require("snacks").picker.help() end,            name = 'Help tags',       section = 'Picker' },
 

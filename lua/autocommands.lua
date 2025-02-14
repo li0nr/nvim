@@ -76,3 +76,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   desc = "Change commentstring for c/c++ files",
 })
+-- Save session on exit ============================
+local session_file = "session.nvim"
+-- Auto-save session on exit
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    vim.cmd("mksession! " .. session_file)
+  end,
+})
