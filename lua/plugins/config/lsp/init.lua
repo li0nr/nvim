@@ -7,10 +7,10 @@ local M = {}
 
 local setup_diagnostic_config = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "󰙎" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -19,7 +19,6 @@ local setup_diagnostic_config = function()
       { texthl = sign.name, text = sign.text, numhl = "" }
     )
   end
-
   vim.diagnostic.config({
     underline = true,
     --[[ virtual_text = {
@@ -28,36 +27,19 @@ local setup_diagnostic_config = function()
       spacing = 5,
     }, ]]
     virtual_text = false,
-    signs = {
-      active = signs,
-    },
+    signs = { active = signs },
     severity_sort = true,
-    float = {
-      source = "always", -- Or "if_many"
-    },
+    float = { source = true },
   })
 
-  local which_key = require("which-key")
-  which_key.register({
-    ["]d"] = { vim.diagnostic.goto_next, "Next [d]iagnostic" },
-    ["[d"] = { vim.diagnostic.goto_prev, "Prev [d]iagnostic" },
-    ["<leader>ld"] = {
-      vim.diagnostic.open_float,
-      "[d]iagnostics under cursor",
-    },
-  })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Next diagnostic" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Previous diagnostic" })
+vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Diagnostics under cursor" })
 end
 
 local setup_custom_handlers = function()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover,
-    { border = "rounded" }
-  )
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help,
-    { border = "rounded" }
-  )
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
 local setup_other_lsps = function(lspconfig)
@@ -82,36 +64,18 @@ local setup_other_lsps = function(lspconfig)
     lspconfig[server].setup({
       on_attach = function(client, bufnr)
         vanilla.setup_native_buffer_mappings(client, bufnr)
-        vanilla.setup_plugin_buffer_mappings(client, bufnr)
-        vanilla.setup_autocmds(client, bufnr)
       end,
       capabilities = vanilla.capabilities,
     })
   end
-
-  --[[ lspconfig["jsonls"].setup({
-    settings = {
-      json = {
-        schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
-    },
-    on_attach = function(client, bufnr)
-      vanilla.setup_native_buffer_mappings(client, bufnr)
-      vanilla.setup_plugin_buffer_mappings(client, bufnr)
-      vanilla.setup_autocmds(client, bufnr)
-    end,
-    capabilities = vanilla.capabilities,
-  }) ]]
 end
 
-M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
+M.setup = function(mason, mason_lspconfig, lspconfig)
   --[[
   The sequence of operations in this method is important as per mason and
   neodev documentaiton
   - https://github.com/williamboman/mason.nvim
   - https://github.com/williamboman/mason-lspconfig.nvim
-  - https://github.com/folke/lua-dev.nvim
   --]]
 
   mason.setup({
@@ -132,13 +96,6 @@ M.setup = function(mason, mason_lspconfig, lspconfig, neodev)
 
   setup_diagnostic_config()
   setup_custom_handlers()
-
-  -- `neodev` should be setup before we setup `lua_ls`
-  neodev.setup()
-
-  require("which-key").register({
-    ["<leader>l"] = { name = "[L]SP", _ = "which_key_ignore" },
-  })
 
   require("plugins.config.lsp.clangd").setup()
   require("plugins.config.lsp.lua_ls").setup()

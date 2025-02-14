@@ -6,12 +6,10 @@ M.setup = function()
 
   local on_attach = function(client, bufnr)
     vanilla.setup_native_buffer_mappings(client, bufnr)
-    vanilla.setup_plugin_buffer_mappings(client, bufnr)
-    vanilla.setup_autocmds(client, bufnr)
     client.server_capabilities.hoverProvider = false
   end
 
-  require("lspconfig").ruff_lsp.setup({
+  require("lspconfig").ruff.setup({
     on_attach = on_attach,
     capabilities = vanilla.capabilities,
     settings = {

@@ -12,19 +12,9 @@ local root_dir_func = function(fname)
 end
 
 local clangd_custom_setup = function(_, bufnr)
-  local which_key = require("which-key")
-
   -- https://github.com/p00f/clangd_extensions.nvim
-
-  which_key.register({
-    ["<leader>s"] = {
-      "<Cmd>ClangdSwitchSourceHeader<Cr>",
-      "Clangd: Switch Cpp/Header file",
-    },
-  }, { prefix = "<leader>", buffer = bufnr })
-
-  require("clangd_extensions.inlay_hints").setup_autocmd()
-  require("clangd_extensions.inlay_hints").set_inlay_hints()
+  vim.keymap.set("n", "<leader>s", "<Cmd>ClangdSwitchSourceHeader<CR>",
+    { buffer = bufnr, desc = "Clangd: Switch Cpp/Header file" })
 end
 
 M.setup = function()
@@ -35,9 +25,7 @@ M.setup = function()
     cmd = {'clangd', '--header-insertion=never', '-j', nproc, '--background-index', '--clang-tidy'},
     on_attach = function(client, bufnr)
       vanilla.setup_native_buffer_mappings(client, bufnr)
-      vanilla.setup_plugin_buffer_mappings(client, bufnr)
-      vanilla.setup_autocmds(client, bufnr)
-      clangd_custom_setup(client, bufnr)
+      clangd_custom_setup(bufnr)
     end,
     capabilities = vanilla.capabilities,
     root_dir = root_dir_func,

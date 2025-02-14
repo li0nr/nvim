@@ -7,8 +7,6 @@ M.setup = function()
 
   local on_attach = function(client, bufnr)
     vanilla.setup_native_buffer_mappings(client, bufnr)
-    vanilla.setup_plugin_buffer_mappings(client, bufnr)
-    vanilla.setup_autocmds(client, bufnr)
   end
 
   require("lspconfig").pyright.setup({

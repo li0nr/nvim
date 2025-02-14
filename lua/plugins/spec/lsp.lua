@@ -5,51 +5,14 @@ local M = {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      {
-        -- https://github.com/williamboman/mason.nvim
-        "williamboman/mason.nvim",
-      },
-      {
-        -- https://github.com/williamboman/mason-lspconfig.nvim
-        "williamboman/mason-lspconfig.nvim",
-      },
-      {
-        -- https://github.com/folke/lua-dev.nvim
-        "folke/lua-dev.nvim",
-      },
-      {
-        -- spec elsewhere
-        "folke/which-key.nvim",
-      },
-      {
-        -- spec elsewhere
-        "nvim-telescope/telescope.nvim",
-      },
-      {
-        -- spec elsewhere
-        "hrsh7th/cmp-nvim-lsp",
-      },
-      {
-        -- spec below
-        "aznhe21/actions-preview.nvim",
-      },
-      {
-        -- spec below
-        "p00f/clangd_extensions.nvim",
-      },
-      {
-        -- spec elsewhere
-        "ray-x/lsp_signature.nvim",
-      },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+      { "saghen/blink.cmp" },
+      { "aznhe21/actions-preview.nvim" },
+      { "p00f/clangd_extensions.nvim" },
+      { "folke/lazydev.nvim" }
     },
-    opts = {
-      -- Automatically format on save
-      autoformat = false,
-    },
-    --[[ {
-        -- https://github.com/b0o/SchemaStore.nvim
-        "b0o/schemastore.nvim",
-      }, ]]
+    opts = { autoformat = false },
     --[[
     For the core lsp config, its done outside the lazy spec folder as the
     configuration is intenally modular and I would like to fuzzy find my way into
@@ -60,7 +23,6 @@ local M = {
       local mason = require("mason")
       local mason_lspconfig = require("mason-lspconfig")
       local lspconfig = require("lspconfig")
-      local neodev = require("neodev")
 
       -- our config
       local plugins_config_lsp = require("plugins.config.lsp")
@@ -68,26 +30,19 @@ local M = {
       -- pass the imported plugins to our config so that we can setup the
       -- configuration with all of them present, and not have to juggle with
       -- `pcall()`s.
-      plugins_config_lsp.setup(mason, mason_lspconfig, lspconfig, neodev)
+      plugins_config_lsp.setup(mason, mason_lspconfig, lspconfig)
     end,
   },
   {
-    -- https://github.com/aznhe21/actions-preview.nvim
-    "aznhe21/actions-preview.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      {
-        -- spec elsewhere
-        "nvim-telescope/telescope.nvim",
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
-    config = function()
-      require("actions-preview").setup({
-        telescope = require("telescope.themes").get_dropdown({
-          winblend = 20,
-        }),
-      })
-    end,
   },
   {
     -- https://github.com/p00f/clangd_extensions.nvim
@@ -103,6 +58,27 @@ local M = {
       },
     },
   },
+  {
+    -- deprecated for outline.nvim
+    -- f01eae624e6170656b6fadd6d7b8717636078bd6 commit I have worked with
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>lo", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {
+      outline_items = {
+        highlight_hovered_item = false,
+      },
+      symbol_folding = {
+        autofold_depth = false,
+      },
+    },
+  },
 }
 
 return M
+-- https://github.com/simrat39/symbols-outline.nvim
+-- https://github.com/ray-x/lsp_signature.nvim
+-- https://github.com/Bekaboo/dropbar.nvim
