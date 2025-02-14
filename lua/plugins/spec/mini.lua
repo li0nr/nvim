@@ -28,11 +28,12 @@ local M =
     starter.setup({
       items = {
         starter.sections.recent_files(5, true),
-        { action = 'Telescope find_files', name = 'Files',     section = 'Telescope' },
-        { action = 'Telescope live_grep',  name = 'Live grep', section = 'Telescope' },
+        { action = function() require("snacks").picker.files() end, name = 'Files', section = 'Picker' },
+        { action = function() require("snacks").picker.grep() end,  name = 'Grep',  section = 'Picker' },
         starter.sections.builtin_actions(),
-        { action = 'Telescope command_history', name = 'Command history', section = 'Telescope' },
-        { action = 'Telescope help_tags',       name = 'Help tags',       section = 'Telescope' },
+        -- command_history
+        { action = function() require("snacks").picker.command_history() end, name = 'Command history', section = 'Picker' },
+        { action = function() require("snacks").picker.help() end,            name = 'Help tags',       section = 'Picker' },
 
       },
       header = table.concat({
@@ -79,7 +80,7 @@ local M =
     -- [[-- file navigation --]]
     -- maybe move all mini stuff onto seprate file
     require("mini.files").setup({
-      vim.keymap.set("n", "<leader>o", function()
+      vim.keymap.set("n", "<leader>mo", function()
         require("mini.files").open(vim.bo.filetype == 'ministarter' and vim.fn.getcwd() or vim.api.nvim_buf_get_name(0))
       end, { desc = "Open mini.files (Directory of Current File)" }),
 
@@ -115,22 +116,6 @@ local M =
         col = math.floor(0.5 * (vim.o.columns - width)),
       }
     end
-    require("mini.pick").setup({
-      mappings = {
-        choose_in_vsplit = "<C-CR>",
-      },
-      options = {
-        use_cache = true,
-      },
-      window = {
-        config = win_config,
-      },
-      mappings = {
-        refine        = '<C-e>',
-        refine_marked = '<C-m>',
-      },
-    })
-    vim.ui.select = MiniPick.ui_select
   end
 }
 

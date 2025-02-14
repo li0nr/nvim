@@ -7,50 +7,6 @@ local get_capabilities = function()
 
 end
 
-M.setup_plugin_buffer_mappings = function(
-  _, --[[ client --]]
-  bufnr
-)
-  local which_key = require("which-key")
-
-  --============================================================================
-  -- https://github.com/nvim-telescope/telescope.nvim
-  local telescope_builtin = require("telescope.builtin")
-  which_key.register({
-    ["lr"] = {
-      function()
-        telescope_builtin.lsp_references(require("telescope.themes").get_ivy({
-          winblend = 20,
-        }))
-      end,
-      "lsp: [g]oto [r]eferences in telescope",
-    },
-    ["ls"] = {
-      function()
-        telescope_builtin.lsp_document_symbols(
-          require("telescope.themes").get_ivy({
-            winblend = 20,
-          })
-        )
-      end,
-      "lsp: [g]oto [s]ymbols",
-    },
-  }, { prefix = "<leader>", buffer = bufnr })
-end
-
-  -----------------------------------------------------------------------------
-
-  --============================================================================
-  -- https://github.com/aznhe21/actions-preview.nvim
-  --[[ which_key.register({
-    ["la"] = {
-      require("actions-preview").code_actions,
-      "[l]sp: code [a]ctions",
-    },
-  }, { prefix = "<leader>", buffer = bufnr }) ]]
-
-  -----------------------------------------------------------------------------
-
 M.capabilities = get_capabilities()
 
 M.setup_native_buffer_mappings = function(_, bufnr)
