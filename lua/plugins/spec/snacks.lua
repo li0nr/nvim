@@ -98,6 +98,7 @@ return {
             },
           },
           ivy = {
+            cycle = true,
             layout = {
               box = "vertical",
               backdrop = false,
