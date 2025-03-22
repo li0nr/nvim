@@ -50,16 +50,11 @@ local setup_other_lsps = function(lspconfig)
     `clangd` and `lua`, we would move it out of the list below, and have a file
     adjacent to this with the name of the server. See `clangd.lua` and
     `lua_ls.lua` for examples.
+    -- I stopped using Mason, as I have found it unecessary the language server needs to be installed on the system...
     --]]
   for _, server in ipairs({
     "bashls",
     "cmake",
-    --[[ "dotls",
-    "pyright",
-    "dockerls",
-    "tsserver",
-    "vimls",
-    "yamlls", ]]
   }) do
     lspconfig[server].setup({
       on_attach = function(client, bufnr)
@@ -70,29 +65,7 @@ local setup_other_lsps = function(lspconfig)
   end
 end
 
-M.setup = function(mason, mason_lspconfig, lspconfig)
-  --[[
-  The sequence of operations in this method is important as per mason and
-  neodev documentaiton
-  - https://github.com/williamboman/mason.nvim
-  - https://github.com/williamboman/mason-lspconfig.nvim
-  --]]
-
-  mason.setup({
-    ui = {
-      icons = {
-        server_installed = "✓",
-        server_pending = "➜",
-        server_uninstalled = "✗",
-      },
-    },
-  })
-
-  -- local ensure_installed = { "lua_ls" }
-  mason_lspconfig.setup({
-    ensure_installed = { "clangd", "lua_ls"},
-    automatic_installation = true,
-  })
+M.setup = function(lspconfig)
 
   setup_diagnostic_config()
   setup_custom_handlers()

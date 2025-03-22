@@ -20,8 +20,6 @@ local M = {
     --]]
     config = function()
       -- plugins we installed
-      local mason = require("mason")
-      local mason_lspconfig = require("mason-lspconfig")
       local lspconfig = require("lspconfig")
 
       -- our config
@@ -30,7 +28,7 @@ local M = {
       -- pass the imported plugins to our config so that we can setup the
       -- configuration with all of them present, and not have to juggle with
       -- `pcall()`s.
-      plugins_config_lsp.setup(mason, mason_lspconfig, lspconfig)
+      plugins_config_lsp.setup(lspconfig)
     end,
   },
   {
