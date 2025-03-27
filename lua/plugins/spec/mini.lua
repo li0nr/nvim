@@ -81,7 +81,7 @@ local M =
     -- [[-- file navigation --]]
     -- maybe move all mini stuff onto seprate file
     require("mini.files").setup({
-      vim.keymap.set("n", "<leader>mo", function()
+      vim.keymap.set("n", "<leader>o", function()
         require("mini.files").open(vim.bo.filetype == 'ministarter' and vim.fn.getcwd() or vim.api.nvim_buf_get_name(0))
       end, { desc = "Open mini.files (Directory of Current File)" }),
 

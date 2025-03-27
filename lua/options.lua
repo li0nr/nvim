@@ -333,3 +333,5 @@ vim.o.spelloptions  = 'camel'                                -- Treat parts of c
 vim.o.complete      = '.,w,b,u,kspell'                       -- Use spell check and don't use tags for completion
 vim.o.dictionary    = vim.fn.stdpath('config') ..
     '/Users/ramy.fakhoury/Projects/Private/dict/english.txt' -- Use specific dictionaries
+vim.o.hlsearch = true  -- Keep search results highlighted
+vim.o.incsearch = true -- Show search results while typing

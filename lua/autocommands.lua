@@ -23,13 +23,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+-- this is used with git-blame so that we discard the blamed file from the jump list.
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "git",
   callback = function()
-    vim.api.nvim_create_autocmd("BufLeave", {
-      buffer = vim.fn.bufnr(),
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
+      buffer = buf,
       callback = function()
-        vim.cmd("bwipeout")
+        vim.api.nvim_buf_delete(buf, { force = true });
       end,
     })
   end,
@@ -75,12 +77,4 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.commentstring = "// %s"
   end,
   desc = "Change commentstring for c/c++ files",
-})
--- Save session on exit ============================
-local session_file = "session.nvim"
--- Auto-save session on exit
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    vim.cmd("mksession! " .. session_file)
-  end,
 })

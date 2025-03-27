@@ -130,3 +130,14 @@ end, {})
 
 -- Make `:wq` behave the same as `:Wq`
 vim.keymap.set("n", "<leader>wq", "<Cmd>Wq<CR>", { desc = "Save and quit (closing special buffers)" })
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { silent = true })
+
+-- Function to save session
+local session_file = "session.nvim"
+local function save_session()
+  vim.cmd("mksession! " .. session_file)
+  print("Session saved!")
+end
+
+-- Map "ss" in normal mode to save session
+vim.keymap.set("n", "ss", save_session, { noremap = true, silent = true })
