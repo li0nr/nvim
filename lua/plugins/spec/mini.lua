@@ -16,6 +16,7 @@ local M =
     -- [[-- UI --]]
     require("mini.statusline").setup()
     require("mini.notify").setup()
+    vim.notify = MiniNotify.make_notify({ ERROR = { duration = 10000 } })
     -- require('mini.indentscope').setup()
     local indentscope = require('mini.indentscope')
     indentscope.setup({
