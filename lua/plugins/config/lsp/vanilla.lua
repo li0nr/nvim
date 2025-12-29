@@ -18,7 +18,16 @@ M.setup_native_buffer_mappings = function(_, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = lsp_prefix("goto definition") })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = lsp_prefix("goto Declaration") })
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = lsp_prefix("goto implementation") })
-  vim.keymap.set("n", "gh", vim.lsp.buf.hover, { buffer = bufnr, desc = lsp_prefix("hover documentation") })
+
+  -- vim.keymap.set("n", "gh", vim.lsp.buf.hover, { buffer = bufnr, desc = lsp_prefix("hover documentation") })
+  -- @type ''|'double'|'single'|'shadow'|'rounded'|'solid'|'bold'|'none'
+  -- vim.o.winborder = "double"
+  vim.keymap.set("n", "gh",
+    function() vim.lsp.buf.hover { border = "double", close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" } } end,
+    { buffer = bufnr, desc = lsp_prefix("hover documentation") })
+  vim.keymap.set("n", "gsh",
+    function() vim.lsp.buf.signature_help { border = "double", close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" }, } end,
+    { buffer = bufnr, desc = lsp_prefix("hover signature") })
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
     { buffer = bufnr, desc = lsp_prefix("rename identifier under cursor") })
 

@@ -20,7 +20,6 @@ local M = {
     --]]
     config = function()
       -- plugins we installed
-      local lspconfig = require("lspconfig")
 
       -- our config
       local plugins_config_lsp = require("plugins.config.lsp")
@@ -28,7 +27,7 @@ local M = {
       -- pass the imported plugins to our config so that we can setup the
       -- configuration with all of them present, and not have to juggle with
       -- `pcall()`s.
-      plugins_config_lsp.setup(lspconfig)
+      plugins_config_lsp.setup()
     end,
   },
   {

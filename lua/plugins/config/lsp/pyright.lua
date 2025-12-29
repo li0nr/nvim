@@ -9,7 +9,7 @@ M.setup = function()
     vanilla.setup_native_buffer_mappings(client, bufnr)
   end
 
-  require("lspconfig").pyright.setup({
+  vim.lsp.config('pyright', {
     on_attach = on_attach,
     capabilities = vanilla.capabilities,
     settings = {

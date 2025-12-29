@@ -6,57 +6,49 @@ Called by "lua/plugins/spec/lsp.lua"
 local M = {}
 
 local setup_diagnostic_config = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "󰙎" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(
-      sign.name,
-      { texthl = sign.name, text = sign.text, numhl = "" }
-    )
-  end
-  vim.diagnostic.config({
-    underline = true,
-    --[[ virtual_text = {
-      severity = vim.diagnostic.severity.ERROR,
-      source = true,
-      spacing = 5,
-    }, ]]
-    virtual_text = false,
-    signs = { active = signs },
-    severity_sort = true,
-    float = { source = true },
-  })
-
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Next diagnostic" })
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Previous diagnostic" })
+  vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+    { noremap = true, silent = true, desc = "Next diagnostic" })
+  vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+    { noremap = true, silent = true, desc = "Previous diagnostic" })
 vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { noremap = true, silent = true, desc = "Diagnostics under cursor" })
 end
 
-local setup_custom_handlers = function()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-end
+local config = {
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "󰙎",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+  },
+  update_in_insert = true,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "single",
+    source = "always",
+    header = "",
+    prefix = "",
+    suffix = "",
+  },
+}
+vim.diagnostic.config(config)
 
-local setup_other_lsps = function(lspconfig)
+
+local setup_other_lsps = function()
   local vanilla = require("plugins.config.lsp.vanilla")
-
-  --[[
-    For a server which we want to customize significantly, like we are doing for
-    `clangd` and `lua`, we would move it out of the list below, and have a file
-    adjacent to this with the name of the server. See `clangd.lua` and
-    `lua_ls.lua` for examples.
-    -- I stopped using Mason, as I have found it unecessary the language server needs to be installed on the system...
-    --]]
   for _, server in ipairs({
     "bashls",
     "cmake",
+    "lua_ls",
+    "ty",
+    "zls",
+    "ruff"
   }) do
-    lspconfig[server].setup({
+    vim.lsp.config(server, {
       on_attach = function(client, bufnr)
         vanilla.setup_native_buffer_mappings(client, bufnr)
       end,
@@ -65,18 +57,19 @@ local setup_other_lsps = function(lspconfig)
   end
 end
 
-M.setup = function(lspconfig)
+M.setup = function()
 
   setup_diagnostic_config()
-  setup_custom_handlers()
-
   require("plugins.config.lsp.clangd").setup()
-  require("plugins.config.lsp.lua_ls").setup()
-  require("plugins.config.lsp.ruff_lsp").setup()
   require("plugins.config.lsp.pyright").setup()
-  require("plugins.config.lsp.zls").setup()
 
-  setup_other_lsps(lspconfig)
+  setup_other_lsps()
+  vim.lsp.enable({ 'clangd' })
+  vim.lsp.enable({ 'lua_ls' })
+  vim.lsp.enable({ 'pyright', 'ruff', 'ty' })
+  vim.lsp.enable({ 'zls' })
+  vim.lsp.enable({ 'bashls' })
+  -- vim.lsp.enable({ 'cmake' })
 end
 
 return M
